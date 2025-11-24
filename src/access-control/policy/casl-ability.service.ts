@@ -92,13 +92,13 @@ export class CaslAbilityService {
         if (policy.conditions.length > 0) {
           localArgs.push(policy.conditions);
         }
+      } else {
+        const cond =
+          typeof policy.conditions === 'object' && policy.conditions['data']
+            ? policy.conditions['data']
+            : policy.conditions;
+        localArgs.push(cond);
       }
-    } else {
-      const cond =
-        typeof policy.conditions === 'object' && policy.conditions['data']
-          ? policy.conditions['data']
-          : policy.conditions;
-      localArgs.push(cond);
     }
 
     action(policy.action, policy.subject, ...localArgs);

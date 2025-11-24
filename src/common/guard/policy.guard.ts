@@ -2,12 +2,7 @@ import {
   CaslAbilityService,
   IPolicy,
 } from '@/access-control/policy/casl-ability.service';
-import {
-  CanActivate,
-  ExecutionContext,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { PermissionService } from '@/access-control/permission/permission.service';
@@ -15,9 +10,18 @@ import { UserRepository } from '@/user/user.repository';
 import { RoleService } from '@/access-control/role/role.service';
 import { PERMISSION_KEY } from '../decorators/role-permission.decorator';
 import { ConfigEnum } from '../enum/config.enum';
-import { plainToInstance } from 'class-transformer';
 import { SharedService } from '@/modules/shared/shared.service';
+import { User } from '@/user/user.entity';
+import { plainToInstance } from 'class-transformer';
 
+const mapSubjectToClass = (subject: string) => {
+  switch (subject.toLocaleLowerCase()) {
+    case 'user':
+      return User;
+    default:
+      return subject;
+  }
+};
 @Injectable()
 export class PolicyGuard implements CanActivate {
   constructor(
@@ -103,7 +107,6 @@ export class PolicyGuard implements CanActivate {
     user.permissions = user.UserRole.reduce((acc, cur) => {
       return [...acc, ...cur.role.RolePermissions];
     }, []);
-    console.log('user', user);
 
     const abilities = this.caslAbilityService.buildAbility(policies, [
       user,
@@ -122,13 +125,23 @@ export class PolicyGuard implements CanActivate {
       let permissionGranted = false;
 
       for (const ability of abilities) {
-        const subjectObj = await this.sharedService.getSubject(subject, user);
+        const data = await this.sharedService.getSubject(subject, user);
+        const subjectTemp = mapSubjectToClass(subject);
+        const subjectObj =
+          typeof subjectTemp === 'string'
+            ? subjectTemp
+            : plainToInstance(subjectTemp, data);
 
+        // 用户：角色上权限，是否能通过 权限的配置
         if (fields) {
-          if ((fields as any)?.length > 0 && Array.isArray(fields)) {
-            permissionGranted = fields.every((field) => {
-              return ability.can(action, subjectObj, field as string);
-            });
+          if (Array.isArray(fields)) {
+            if ((fields as any)?.length > 0) {
+              permissionGranted = fields.every((field) => {
+                return ability.can(action, subjectObj, field as string);
+              });
+            } else {
+              permissionGranted = ability.can(action, subjectObj);
+            }
           } else if (fields['data']) {
             permissionGranted = fields['data'].every((field) =>
               ability.can(action, subjectObj, field),
