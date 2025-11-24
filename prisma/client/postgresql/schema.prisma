@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// mysql, postgresql
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client/postgresql"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  username  String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  UserRole  UserRole[]
+
+  @@map("users")
+}
+
+model Role {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique()
+  description     String?
+  users           UserRole[]
+  RolePermissions RolePermissions[]
+  RolePolicy      RolePolicy[]
+
+  @@map("roles")
+}
+
+model UserRole {
+  userId Int
+  roleId Int
+  role   Role @relation(fields: [roleId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model Permission {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique // Controller name + Route name : user:create
+  action           String // action: READ, CREATE, UPDATE, DELETE, MANAGE
+  description      String?
+  RolePermissions  RolePermissions[]
+  PermissionPolicy PermissionPolicy[]
+
+  @@map("permissions")
+}
+
+model RolePermissions {
+  roleId       Int
+  permissionId Int
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model Policy {
+  id         Int    @id @default(autoincrement())
+  type       Int // 类型标识， 0 -json, 1 -mongo, 2 -function
+  effect     String // 'can' | cannot'
+  action     String // CURD + manage
+  subject    String // Class 类
+  fields     Json? // 字段列表，{type: data}
+  conditions Json?
+  args       Json?
+
+  // base64编码字段
+  encode String @unique
+
+  RolePolicy       RolePolicy[]
+  PermissionPolicy PermissionPolicy[]
+
+  @@map("policies")
+}
+
+// Role 和 Policy 角色所拥有的策略权限
+model RolePolicy {
+  roleId   Int
+  policyId Int
+  role     Role   @relation(fields: [roleId], references: [id])
+  policy   Policy @relation(fields: [policyId], references: [id])
+
+  @@id([roleId, policyId]) // 联合主键
+  @@map("role_policies")
+}
+
+// Permission 和 Policy 路由级别所需要的策略权限
+model PermissionPolicy {
+  permissionId Int
+  policyId     Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  policy       Policy     @relation(fields: [policyId], references: [id])
+
+  @@id([permissionId, policyId])
+  @@map("permission_policies")
+}
