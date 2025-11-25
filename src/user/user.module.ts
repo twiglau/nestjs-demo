@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { forwardRef, Global, Module } from '@nestjs/common';
 import { getEnvs } from '@/utils/get-envs';
 import { toBoolean } from '@/utils/format';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -56,7 +56,7 @@ const providers = tenantMode
 
 @Global()
 @Module({
-  imports: [...imports, RoleModule, PolicyModule, PermissionModule],
+  imports: [...imports, forwardRef(() => RoleModule)],
   providers: [...providers, UserRepository],
   controllers: [UserController],
   exports: [UserRepository], // 导出后，可以在 Auth 等其他模块中使用（ID 依赖注入方式）

@@ -174,6 +174,11 @@
             "date": 1763974916419,
             "name": "logger/error-2025-11-24-17.log",
             "hash": "9a9f094587d7ac76ba9d42d584a1a14c79c624c218f365d44afb9887370e87e9"
+        },
+        {
+            "date": 1764062953149,
+            "name": "logger/error-2025-11-25-17.log",
+            "hash": "5c0e2793f7f4457f0ceb759ad05ae99f46e1f135312f0a864a7e0230e2f3db74"
         }
     ],
     "hashType": "sha256"

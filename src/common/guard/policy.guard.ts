@@ -2,17 +2,20 @@ import {
   CaslAbilityService,
   IPolicy,
 } from '@/access-control/policy/casl-ability.service';
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { PermissionService } from '@/access-control/permission/permission.service';
-import { UserRepository } from '@/user/user.repository';
-import { RoleService } from '@/access-control/role/role.service';
 import { PERMISSION_KEY } from '../decorators/role-permission.decorator';
 import { ConfigEnum } from '../enum/config.enum';
-import { SharedService } from '@/modules/shared/shared.service';
 import { User } from '@/user/user.entity';
 import { plainToInstance } from 'class-transformer';
+import { PrismaClient } from 'prisma/client/postgresql';
+import { PRISMA_DATABASE } from '@/database/database-constants';
 
 const mapSubjectToClass = (subject: string) => {
   switch (subject.toLocaleLowerCase()) {
@@ -28,10 +31,7 @@ export class PolicyGuard implements CanActivate {
     private caslAbilityService: CaslAbilityService,
     private reflector: Reflector,
     private configService: ConfigService,
-    private permissionService: PermissionService,
-    private userRepository: UserRepository,
-    private roleService: RoleService,
-    private sharedService: SharedService,
+    @Inject(PRISMA_DATABASE) private prismaClient: PrismaClient,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     // 通过 caslAbilityService 获取用户已有权限的实例
@@ -62,24 +62,72 @@ export class PolicyGuard implements CanActivate {
 
     // 1. 获取 permission name: 装饰器 handler&class
     const personal_right = `${cls}:${handler}`;
+    const req = context.switchToHttp().getRequest();
+    const { id, username } = req.user;
+    if (!id || !username) {
+      return false;
+    }
     // 2. 获取 policy: 通过 permission
-    const permissionPolicy =
-      await this.permissionService.findByName(personal_right);
+    const permissionPolicy = await this.prismaClient.permission.findUnique({
+      where: { name: personal_right },
+      include: {
+        PermissionPolicy: {
+          include: {
+            policy: true,
+          },
+        },
+      },
+    });
 
     // 3. 缩小范围：policy -> subjects -> 缩小PermissionPolicy的查询范围
     const subjects = permissionPolicy?.PermissionPolicy.map(
       (p) => p.policy.subject,
     );
     // 4. username -> User -> policy & subjects 用户已分配接口权限
-    const req = context.switchToHttp().getRequest();
-    const { username } = req.user;
-    const user = await this.userRepository.findOne(username);
+
+    const user = await this.prismaClient.user.findUnique({
+      where: { id: id, username },
+      include: {
+        UserRole: {
+          include: {
+            role: {
+              include: {
+                RolePermissions: {
+                  include: {
+                    permission: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
     if (!user) {
       return false;
     }
 
-    const roleIds = user?.UserRole.map((role) => role.roleId);
-    const rolePolicies: any[] = await this.roleService.findAllByIds(roleIds);
+    const roleIds = user?.UserRole.map((role) => role.roleId) || [];
+    const rolePolicies: any[] = await this.prismaClient.role.findMany({
+      where: {
+        id: {
+          in: roleIds,
+        },
+      },
+      include: {
+        RolePermissions: {
+          include: {
+            permission: true,
+          },
+        },
+        RolePolicy: {
+          include: {
+            policy: true,
+            role: true,
+          },
+        },
+      },
+    });
 
     // 判断是否在白名单
     const roleWhiteList = this.configService.get(ConfigEnum.ROLE_WHITELIST);
@@ -100,11 +148,11 @@ export class PolicyGuard implements CanActivate {
     }, []);
 
     // 挂载信息
-    delete user.password;
-    user.RolePolicy = rolePolicies;
-    user.policies = policies;
-    user.roleIds = roleIds;
-    user.permissions = user.UserRole.reduce((acc, cur) => {
+    delete (user as any).password;
+    (user as any).RolePolicy = rolePolicies;
+    (user as any).policies = policies;
+    (user as any).roleIds = roleIds;
+    (user as any).permissions = user.UserRole.reduce((acc, cur) => {
       return [...acc, ...cur.role.RolePermissions];
     }, []);
 
@@ -125,7 +173,9 @@ export class PolicyGuard implements CanActivate {
       let permissionGranted = false;
 
       for (const ability of abilities) {
-        const data = await this.sharedService.getSubject(subject, user);
+        const data = await this.prismaClient[subject].findUnique({
+          where: { id: user.id },
+        });
         const subjectTemp = mapSubjectToClass(subject);
         const subjectObj =
           typeof subjectTemp === 'string'
