@@ -35,6 +35,12 @@ export class MenuController {
     return this.menuService.create(createMenuDto);
   }
 
+  @Post('relation')
+  @Create()
+  createRelation(@Body() createMenuDto: CreateMenuDto) {
+    return this.menuService.createRelation(createMenuDto);
+  }
+
   @Get()
   findAll() {
     return this.menuService.findAll();
