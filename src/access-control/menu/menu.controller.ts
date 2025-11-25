@@ -20,11 +20,12 @@ import { JwtGuard } from '@/common/guard/jwt.guard';
 import { AdminGuard } from '@/common/guard/admin.guard';
 import { RolePermissionGuard } from '@/common/guard/role-permission.guard';
 import { PolicyGuard } from '@/common/guard/policy.guard';
+import { FieldUniqueValidationPipe } from '@/common/pipes/unique-validation.pipe';
 
 @Controller('menu')
 @UseGuards(JwtGuard, AdminGuard, RolePermissionGuard, PolicyGuard)
 @Permission('menu')
-@UsePipes()
+@UsePipes(FieldUniqueValidationPipe)
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 

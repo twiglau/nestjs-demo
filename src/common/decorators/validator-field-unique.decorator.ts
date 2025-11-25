@@ -1,7 +1,7 @@
 import type { ValidationOptions } from 'class-validator';
 import 'reflect-metadata';
 
-export const UNIQUE_FIELD_METADTA = 'UNIQUE_FIELD_METADATA';
+export const UNIQUE_FIELD_METADATA = 'UNIQUE_FIELD_METADATA';
 
 export function getUniqueFields(
   dto: object,
@@ -12,7 +12,7 @@ export function getUniqueFields(
 
   const dtoClass = dto.constructor;
   const uniqueFields: Array<Record<string, any>> =
-    Reflect.getMetadata(UNIQUE_FIELD_METADTA, dtoClass) || [];
+    Reflect.getMetadata(UNIQUE_FIELD_METADATA, dtoClass) || [];
 
   return uniqueFields.map((e) => ({
     field: e.field,
@@ -27,10 +27,10 @@ export function ValidatorFieldUnique(
 ) {
   return function (target: object, propertyKey: string) {
     const existingFields =
-      Reflect.getMetadata(UNIQUE_FIELD_METADTA, target.constructor) || [];
-
+      Reflect.getMetadata(UNIQUE_FIELD_METADATA, target.constructor) || [];
+    console.log('ValidatorFieldUnique', existingFields, target, propertyKey);
     Reflect.defineMetadata(
-      UNIQUE_FIELD_METADTA,
+      UNIQUE_FIELD_METADATA,
       [
         ...existingFields,
         {
