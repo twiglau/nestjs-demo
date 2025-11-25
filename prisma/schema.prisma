@@ -33,6 +33,7 @@ model Role {
   users           UserRole[]
   RolePermissions RolePermissions[]
   RolePolicy      RolePolicy[]
+  RoleMenu        RoleMenu[]
 
   @@map("roles")
 }
@@ -107,4 +108,59 @@ model PermissionPolicy {
 
   @@id([permissionId, policyId])
   @@map("permission_policies")
+}
+
+model Menu {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  path      String
+  label     String
+  component String?
+  redirect  String?
+  fullPath  String?
+  alias     String?
+  meta      MenuMeta?
+  status    Int        @default(1)
+  // self-relation
+  parentId  Int?       @map("parent_id")
+  parent    Menu?      @relation("menu_relation", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Menu[]     @relation("menu_relation")
+  roleMenus RoleMenu[]
+  metaId    Int?       @unique @map("meta_id")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("menus")
+}
+
+model MenuMeta {
+  id       Int     @id @default(autoincrement())
+  title    String?
+  layout   String?
+  order    Int?    @default(100)
+  hidden   Boolean @default(false)
+  disabled Boolean @default(false)
+  icon     String?
+  status   Int     @default(1)
+  menuId   Int     @unique @map("menu_id")
+  menu     Menu    @relation(fields: [menuId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("menu_meta")
+}
+
+model RoleMenu {
+  roleId Int  @map("role_id")
+  menuId Int  @map("menu_id")
+  role   Role @relation(fields: [roleId], references: [id])
+  menu   Menu @relation(fields: [menuId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@id([roleId, menuId])
+  @@map("role_menus")
 }

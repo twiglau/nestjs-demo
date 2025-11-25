@@ -53,6 +53,21 @@ export type RolePolicy = $Result.DefaultSelection<Prisma.$RolePolicyPayload>
  * 
  */
 export type PermissionPolicy = $Result.DefaultSelection<Prisma.$PermissionPolicyPayload>
+/**
+ * Model Menu
+ * 
+ */
+export type Menu = $Result.DefaultSelection<Prisma.$MenuPayload>
+/**
+ * Model MenuMeta
+ * 
+ */
+export type MenuMeta = $Result.DefaultSelection<Prisma.$MenuMetaPayload>
+/**
+ * Model RoleMenu
+ * 
+ */
+export type RoleMenu = $Result.DefaultSelection<Prisma.$RoleMenuPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -256,6 +271,36 @@ export class PrismaClient<
     * ```
     */
   get permissionPolicy(): Prisma.PermissionPolicyDelegate<ExtArgs>;
+
+  /**
+   * `prisma.menu`: Exposes CRUD operations for the **Menu** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Menus
+    * const menus = await prisma.menu.findMany()
+    * ```
+    */
+  get menu(): Prisma.MenuDelegate<ExtArgs>;
+
+  /**
+   * `prisma.menuMeta`: Exposes CRUD operations for the **MenuMeta** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MenuMetas
+    * const menuMetas = await prisma.menuMeta.findMany()
+    * ```
+    */
+  get menuMeta(): Prisma.MenuMetaDelegate<ExtArgs>;
+
+  /**
+   * `prisma.roleMenu`: Exposes CRUD operations for the **RoleMenu** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RoleMenus
+    * const roleMenus = await prisma.roleMenu.findMany()
+    * ```
+    */
+  get roleMenu(): Prisma.RoleMenuDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -704,7 +749,10 @@ export namespace Prisma {
     RolePermissions: 'RolePermissions',
     Policy: 'Policy',
     RolePolicy: 'RolePolicy',
-    PermissionPolicy: 'PermissionPolicy'
+    PermissionPolicy: 'PermissionPolicy',
+    Menu: 'Menu',
+    MenuMeta: 'MenuMeta',
+    RoleMenu: 'RoleMenu'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -720,7 +768,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "role" | "userRole" | "permission" | "rolePermissions" | "policy" | "rolePolicy" | "permissionPolicy"
+      modelProps: "user" | "role" | "userRole" | "permission" | "rolePermissions" | "policy" | "rolePolicy" | "permissionPolicy" | "menu" | "menuMeta" | "roleMenu"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1284,6 +1332,216 @@ export namespace Prisma {
           }
         }
       }
+      Menu: {
+        payload: Prisma.$MenuPayload<ExtArgs>
+        fields: Prisma.MenuFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MenuFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MenuFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          findFirst: {
+            args: Prisma.MenuFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MenuFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          findMany: {
+            args: Prisma.MenuFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>[]
+          }
+          create: {
+            args: Prisma.MenuCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          createMany: {
+            args: Prisma.MenuCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MenuCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>[]
+          }
+          delete: {
+            args: Prisma.MenuDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          update: {
+            args: Prisma.MenuUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          deleteMany: {
+            args: Prisma.MenuDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MenuUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MenuUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuPayload>
+          }
+          aggregate: {
+            args: Prisma.MenuAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMenu>
+          }
+          groupBy: {
+            args: Prisma.MenuGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MenuGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MenuCountArgs<ExtArgs>
+            result: $Utils.Optional<MenuCountAggregateOutputType> | number
+          }
+        }
+      }
+      MenuMeta: {
+        payload: Prisma.$MenuMetaPayload<ExtArgs>
+        fields: Prisma.MenuMetaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MenuMetaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MenuMetaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          findFirst: {
+            args: Prisma.MenuMetaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MenuMetaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          findMany: {
+            args: Prisma.MenuMetaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>[]
+          }
+          create: {
+            args: Prisma.MenuMetaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          createMany: {
+            args: Prisma.MenuMetaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MenuMetaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>[]
+          }
+          delete: {
+            args: Prisma.MenuMetaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          update: {
+            args: Prisma.MenuMetaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          deleteMany: {
+            args: Prisma.MenuMetaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MenuMetaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MenuMetaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MenuMetaPayload>
+          }
+          aggregate: {
+            args: Prisma.MenuMetaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMenuMeta>
+          }
+          groupBy: {
+            args: Prisma.MenuMetaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MenuMetaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MenuMetaCountArgs<ExtArgs>
+            result: $Utils.Optional<MenuMetaCountAggregateOutputType> | number
+          }
+        }
+      }
+      RoleMenu: {
+        payload: Prisma.$RoleMenuPayload<ExtArgs>
+        fields: Prisma.RoleMenuFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoleMenuFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoleMenuFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          findFirst: {
+            args: Prisma.RoleMenuFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoleMenuFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          findMany: {
+            args: Prisma.RoleMenuFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>[]
+          }
+          create: {
+            args: Prisma.RoleMenuCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          createMany: {
+            args: Prisma.RoleMenuCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoleMenuCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>[]
+          }
+          delete: {
+            args: Prisma.RoleMenuDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          update: {
+            args: Prisma.RoleMenuUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          deleteMany: {
+            args: Prisma.RoleMenuDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoleMenuUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.RoleMenuUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoleMenuPayload>
+          }
+          aggregate: {
+            args: Prisma.RoleMenuAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoleMenu>
+          }
+          groupBy: {
+            args: Prisma.RoleMenuGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoleMenuGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoleMenuCountArgs<ExtArgs>
+            result: $Utils.Optional<RoleMenuCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1479,12 +1737,14 @@ export namespace Prisma {
     users: number
     RolePermissions: number
     RolePolicy: number
+    RoleMenu: number
   }
 
   export type RoleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | RoleCountOutputTypeCountUsersArgs
     RolePermissions?: boolean | RoleCountOutputTypeCountRolePermissionsArgs
     RolePolicy?: boolean | RoleCountOutputTypeCountRolePolicyArgs
+    RoleMenu?: boolean | RoleCountOutputTypeCountRoleMenuArgs
   }
 
   // Custom InputTypes
@@ -1517,6 +1777,13 @@ export namespace Prisma {
    */
   export type RoleCountOutputTypeCountRolePolicyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RolePolicyWhereInput
+  }
+
+  /**
+   * RoleCountOutputType without action
+   */
+  export type RoleCountOutputTypeCountRoleMenuArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoleMenuWhereInput
   }
 
 
@@ -1597,6 +1864,46 @@ export namespace Prisma {
    */
   export type PolicyCountOutputTypeCountPermissionPolicyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PermissionPolicyWhereInput
+  }
+
+
+  /**
+   * Count Type MenuCountOutputType
+   */
+
+  export type MenuCountOutputType = {
+    children: number
+    roleMenus: number
+  }
+
+  export type MenuCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    children?: boolean | MenuCountOutputTypeCountChildrenArgs
+    roleMenus?: boolean | MenuCountOutputTypeCountRoleMenusArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MenuCountOutputType without action
+   */
+  export type MenuCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuCountOutputType
+     */
+    select?: MenuCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MenuCountOutputType without action
+   */
+  export type MenuCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MenuWhereInput
+  }
+
+  /**
+   * MenuCountOutputType without action
+   */
+  export type MenuCountOutputTypeCountRoleMenusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoleMenuWhereInput
   }
 
 
@@ -2771,6 +3078,7 @@ export namespace Prisma {
     users?: boolean | Role$usersArgs<ExtArgs>
     RolePermissions?: boolean | Role$RolePermissionsArgs<ExtArgs>
     RolePolicy?: boolean | Role$RolePolicyArgs<ExtArgs>
+    RoleMenu?: boolean | Role$RoleMenuArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["role"]>
 
@@ -2790,6 +3098,7 @@ export namespace Prisma {
     users?: boolean | Role$usersArgs<ExtArgs>
     RolePermissions?: boolean | Role$RolePermissionsArgs<ExtArgs>
     RolePolicy?: boolean | Role$RolePolicyArgs<ExtArgs>
+    RoleMenu?: boolean | Role$RoleMenuArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2800,6 +3109,7 @@ export namespace Prisma {
       users: Prisma.$UserRolePayload<ExtArgs>[]
       RolePermissions: Prisma.$RolePermissionsPayload<ExtArgs>[]
       RolePolicy: Prisma.$RolePolicyPayload<ExtArgs>[]
+      RoleMenu: Prisma.$RoleMenuPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3172,6 +3482,7 @@ export namespace Prisma {
     users<T extends Role$usersArgs<ExtArgs> = {}>(args?: Subset<T, Role$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany"> | Null>
     RolePermissions<T extends Role$RolePermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Role$RolePermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePermissionsPayload<ExtArgs>, T, "findMany"> | Null>
     RolePolicy<T extends Role$RolePolicyArgs<ExtArgs> = {}>(args?: Subset<T, Role$RolePolicyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePolicyPayload<ExtArgs>, T, "findMany"> | Null>
+    RoleMenu<T extends Role$RoleMenuArgs<ExtArgs> = {}>(args?: Subset<T, Role$RoleMenuArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3575,6 +3886,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RolePolicyScalarFieldEnum | RolePolicyScalarFieldEnum[]
+  }
+
+  /**
+   * Role.RoleMenu
+   */
+  export type Role$RoleMenuArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    where?: RoleMenuWhereInput
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    cursor?: RoleMenuWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoleMenuScalarFieldEnum | RoleMenuScalarFieldEnum[]
   }
 
   /**
@@ -9397,6 +9728,3181 @@ export namespace Prisma {
 
 
   /**
+   * Model Menu
+   */
+
+  export type AggregateMenu = {
+    _count: MenuCountAggregateOutputType | null
+    _avg: MenuAvgAggregateOutputType | null
+    _sum: MenuSumAggregateOutputType | null
+    _min: MenuMinAggregateOutputType | null
+    _max: MenuMaxAggregateOutputType | null
+  }
+
+  export type MenuAvgAggregateOutputType = {
+    id: number | null
+    status: number | null
+    parentId: number | null
+    metaId: number | null
+  }
+
+  export type MenuSumAggregateOutputType = {
+    id: number | null
+    status: number | null
+    parentId: number | null
+    metaId: number | null
+  }
+
+  export type MenuMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    path: string | null
+    label: string | null
+    component: string | null
+    redirect: string | null
+    fullPath: string | null
+    alias: string | null
+    status: number | null
+    parentId: number | null
+    metaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenuMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    path: string | null
+    label: string | null
+    component: string | null
+    redirect: string | null
+    fullPath: string | null
+    alias: string | null
+    status: number | null
+    parentId: number | null
+    metaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenuCountAggregateOutputType = {
+    id: number
+    name: number
+    path: number
+    label: number
+    component: number
+    redirect: number
+    fullPath: number
+    alias: number
+    status: number
+    parentId: number
+    metaId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MenuAvgAggregateInputType = {
+    id?: true
+    status?: true
+    parentId?: true
+    metaId?: true
+  }
+
+  export type MenuSumAggregateInputType = {
+    id?: true
+    status?: true
+    parentId?: true
+    metaId?: true
+  }
+
+  export type MenuMinAggregateInputType = {
+    id?: true
+    name?: true
+    path?: true
+    label?: true
+    component?: true
+    redirect?: true
+    fullPath?: true
+    alias?: true
+    status?: true
+    parentId?: true
+    metaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenuMaxAggregateInputType = {
+    id?: true
+    name?: true
+    path?: true
+    label?: true
+    component?: true
+    redirect?: true
+    fullPath?: true
+    alias?: true
+    status?: true
+    parentId?: true
+    metaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenuCountAggregateInputType = {
+    id?: true
+    name?: true
+    path?: true
+    label?: true
+    component?: true
+    redirect?: true
+    fullPath?: true
+    alias?: true
+    status?: true
+    parentId?: true
+    metaId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MenuAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Menu to aggregate.
+     */
+    where?: MenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenuOrderByWithRelationInput | MenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Menus
+    **/
+    _count?: true | MenuCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MenuAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MenuSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MenuMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MenuMaxAggregateInputType
+  }
+
+  export type GetMenuAggregateType<T extends MenuAggregateArgs> = {
+        [P in keyof T & keyof AggregateMenu]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMenu[P]>
+      : GetScalarType<T[P], AggregateMenu[P]>
+  }
+
+
+
+
+  export type MenuGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MenuWhereInput
+    orderBy?: MenuOrderByWithAggregationInput | MenuOrderByWithAggregationInput[]
+    by: MenuScalarFieldEnum[] | MenuScalarFieldEnum
+    having?: MenuScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MenuCountAggregateInputType | true
+    _avg?: MenuAvgAggregateInputType
+    _sum?: MenuSumAggregateInputType
+    _min?: MenuMinAggregateInputType
+    _max?: MenuMaxAggregateInputType
+  }
+
+  export type MenuGroupByOutputType = {
+    id: number
+    name: string
+    path: string
+    label: string
+    component: string | null
+    redirect: string | null
+    fullPath: string | null
+    alias: string | null
+    status: number
+    parentId: number | null
+    metaId: number | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MenuCountAggregateOutputType | null
+    _avg: MenuAvgAggregateOutputType | null
+    _sum: MenuSumAggregateOutputType | null
+    _min: MenuMinAggregateOutputType | null
+    _max: MenuMaxAggregateOutputType | null
+  }
+
+  type GetMenuGroupByPayload<T extends MenuGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MenuGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MenuGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MenuGroupByOutputType[P]>
+            : GetScalarType<T[P], MenuGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MenuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    path?: boolean
+    label?: boolean
+    component?: boolean
+    redirect?: boolean
+    fullPath?: boolean
+    alias?: boolean
+    status?: boolean
+    parentId?: boolean
+    metaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    meta?: boolean | Menu$metaArgs<ExtArgs>
+    parent?: boolean | Menu$parentArgs<ExtArgs>
+    children?: boolean | Menu$childrenArgs<ExtArgs>
+    roleMenus?: boolean | Menu$roleMenusArgs<ExtArgs>
+    _count?: boolean | MenuCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["menu"]>
+
+  export type MenuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    path?: boolean
+    label?: boolean
+    component?: boolean
+    redirect?: boolean
+    fullPath?: boolean
+    alias?: boolean
+    status?: boolean
+    parentId?: boolean
+    metaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Menu$parentArgs<ExtArgs>
+  }, ExtArgs["result"]["menu"]>
+
+  export type MenuSelectScalar = {
+    id?: boolean
+    name?: boolean
+    path?: boolean
+    label?: boolean
+    component?: boolean
+    redirect?: boolean
+    fullPath?: boolean
+    alias?: boolean
+    status?: boolean
+    parentId?: boolean
+    metaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MenuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meta?: boolean | Menu$metaArgs<ExtArgs>
+    parent?: boolean | Menu$parentArgs<ExtArgs>
+    children?: boolean | Menu$childrenArgs<ExtArgs>
+    roleMenus?: boolean | Menu$roleMenusArgs<ExtArgs>
+    _count?: boolean | MenuCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MenuIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Menu$parentArgs<ExtArgs>
+  }
+
+  export type $MenuPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Menu"
+    objects: {
+      meta: Prisma.$MenuMetaPayload<ExtArgs> | null
+      parent: Prisma.$MenuPayload<ExtArgs> | null
+      children: Prisma.$MenuPayload<ExtArgs>[]
+      roleMenus: Prisma.$RoleMenuPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      path: string
+      label: string
+      component: string | null
+      redirect: string | null
+      fullPath: string | null
+      alias: string | null
+      status: number
+      parentId: number | null
+      metaId: number | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["menu"]>
+    composites: {}
+  }
+
+  type MenuGetPayload<S extends boolean | null | undefined | MenuDefaultArgs> = $Result.GetResult<Prisma.$MenuPayload, S>
+
+  type MenuCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MenuFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MenuCountAggregateInputType | true
+    }
+
+  export interface MenuDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Menu'], meta: { name: 'Menu' } }
+    /**
+     * Find zero or one Menu that matches the filter.
+     * @param {MenuFindUniqueArgs} args - Arguments to find a Menu
+     * @example
+     * // Get one Menu
+     * const menu = await prisma.menu.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MenuFindUniqueArgs>(args: SelectSubset<T, MenuFindUniqueArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Menu that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MenuFindUniqueOrThrowArgs} args - Arguments to find a Menu
+     * @example
+     * // Get one Menu
+     * const menu = await prisma.menu.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MenuFindUniqueOrThrowArgs>(args: SelectSubset<T, MenuFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Menu that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuFindFirstArgs} args - Arguments to find a Menu
+     * @example
+     * // Get one Menu
+     * const menu = await prisma.menu.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MenuFindFirstArgs>(args?: SelectSubset<T, MenuFindFirstArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Menu that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuFindFirstOrThrowArgs} args - Arguments to find a Menu
+     * @example
+     * // Get one Menu
+     * const menu = await prisma.menu.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MenuFindFirstOrThrowArgs>(args?: SelectSubset<T, MenuFindFirstOrThrowArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Menus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Menus
+     * const menus = await prisma.menu.findMany()
+     * 
+     * // Get first 10 Menus
+     * const menus = await prisma.menu.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const menuWithIdOnly = await prisma.menu.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MenuFindManyArgs>(args?: SelectSubset<T, MenuFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Menu.
+     * @param {MenuCreateArgs} args - Arguments to create a Menu.
+     * @example
+     * // Create one Menu
+     * const Menu = await prisma.menu.create({
+     *   data: {
+     *     // ... data to create a Menu
+     *   }
+     * })
+     * 
+     */
+    create<T extends MenuCreateArgs>(args: SelectSubset<T, MenuCreateArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Menus.
+     * @param {MenuCreateManyArgs} args - Arguments to create many Menus.
+     * @example
+     * // Create many Menus
+     * const menu = await prisma.menu.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MenuCreateManyArgs>(args?: SelectSubset<T, MenuCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Menus and returns the data saved in the database.
+     * @param {MenuCreateManyAndReturnArgs} args - Arguments to create many Menus.
+     * @example
+     * // Create many Menus
+     * const menu = await prisma.menu.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Menus and only return the `id`
+     * const menuWithIdOnly = await prisma.menu.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MenuCreateManyAndReturnArgs>(args?: SelectSubset<T, MenuCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Menu.
+     * @param {MenuDeleteArgs} args - Arguments to delete one Menu.
+     * @example
+     * // Delete one Menu
+     * const Menu = await prisma.menu.delete({
+     *   where: {
+     *     // ... filter to delete one Menu
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MenuDeleteArgs>(args: SelectSubset<T, MenuDeleteArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Menu.
+     * @param {MenuUpdateArgs} args - Arguments to update one Menu.
+     * @example
+     * // Update one Menu
+     * const menu = await prisma.menu.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MenuUpdateArgs>(args: SelectSubset<T, MenuUpdateArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Menus.
+     * @param {MenuDeleteManyArgs} args - Arguments to filter Menus to delete.
+     * @example
+     * // Delete a few Menus
+     * const { count } = await prisma.menu.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MenuDeleteManyArgs>(args?: SelectSubset<T, MenuDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Menus
+     * const menu = await prisma.menu.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MenuUpdateManyArgs>(args: SelectSubset<T, MenuUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Menu.
+     * @param {MenuUpsertArgs} args - Arguments to update or create a Menu.
+     * @example
+     * // Update or create a Menu
+     * const menu = await prisma.menu.upsert({
+     *   create: {
+     *     // ... data to create a Menu
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Menu we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MenuUpsertArgs>(args: SelectSubset<T, MenuUpsertArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Menus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuCountArgs} args - Arguments to filter Menus to count.
+     * @example
+     * // Count the number of Menus
+     * const count = await prisma.menu.count({
+     *   where: {
+     *     // ... the filter for the Menus we want to count
+     *   }
+     * })
+    **/
+    count<T extends MenuCountArgs>(
+      args?: Subset<T, MenuCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MenuCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Menu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MenuAggregateArgs>(args: Subset<T, MenuAggregateArgs>): Prisma.PrismaPromise<GetMenuAggregateType<T>>
+
+    /**
+     * Group by Menu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MenuGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MenuGroupByArgs['orderBy'] }
+        : { orderBy?: MenuGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MenuGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMenuGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Menu model
+   */
+  readonly fields: MenuFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Menu.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MenuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    meta<T extends Menu$metaArgs<ExtArgs> = {}>(args?: Subset<T, Menu$metaArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    parent<T extends Menu$parentArgs<ExtArgs> = {}>(args?: Subset<T, Menu$parentArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    children<T extends Menu$childrenArgs<ExtArgs> = {}>(args?: Subset<T, Menu$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findMany"> | Null>
+    roleMenus<T extends Menu$roleMenusArgs<ExtArgs> = {}>(args?: Subset<T, Menu$roleMenusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Menu model
+   */ 
+  interface MenuFieldRefs {
+    readonly id: FieldRef<"Menu", 'Int'>
+    readonly name: FieldRef<"Menu", 'String'>
+    readonly path: FieldRef<"Menu", 'String'>
+    readonly label: FieldRef<"Menu", 'String'>
+    readonly component: FieldRef<"Menu", 'String'>
+    readonly redirect: FieldRef<"Menu", 'String'>
+    readonly fullPath: FieldRef<"Menu", 'String'>
+    readonly alias: FieldRef<"Menu", 'String'>
+    readonly status: FieldRef<"Menu", 'Int'>
+    readonly parentId: FieldRef<"Menu", 'Int'>
+    readonly metaId: FieldRef<"Menu", 'Int'>
+    readonly createdAt: FieldRef<"Menu", 'DateTime'>
+    readonly updatedAt: FieldRef<"Menu", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Menu findUnique
+   */
+  export type MenuFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter, which Menu to fetch.
+     */
+    where: MenuWhereUniqueInput
+  }
+
+  /**
+   * Menu findUniqueOrThrow
+   */
+  export type MenuFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter, which Menu to fetch.
+     */
+    where: MenuWhereUniqueInput
+  }
+
+  /**
+   * Menu findFirst
+   */
+  export type MenuFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter, which Menu to fetch.
+     */
+    where?: MenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenuOrderByWithRelationInput | MenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Menus.
+     */
+    cursor?: MenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Menus.
+     */
+    distinct?: MenuScalarFieldEnum | MenuScalarFieldEnum[]
+  }
+
+  /**
+   * Menu findFirstOrThrow
+   */
+  export type MenuFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter, which Menu to fetch.
+     */
+    where?: MenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenuOrderByWithRelationInput | MenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Menus.
+     */
+    cursor?: MenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Menus.
+     */
+    distinct?: MenuScalarFieldEnum | MenuScalarFieldEnum[]
+  }
+
+  /**
+   * Menu findMany
+   */
+  export type MenuFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter, which Menus to fetch.
+     */
+    where?: MenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Menus to fetch.
+     */
+    orderBy?: MenuOrderByWithRelationInput | MenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Menus.
+     */
+    cursor?: MenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Menus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Menus.
+     */
+    skip?: number
+    distinct?: MenuScalarFieldEnum | MenuScalarFieldEnum[]
+  }
+
+  /**
+   * Menu create
+   */
+  export type MenuCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Menu.
+     */
+    data: XOR<MenuCreateInput, MenuUncheckedCreateInput>
+  }
+
+  /**
+   * Menu createMany
+   */
+  export type MenuCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Menus.
+     */
+    data: MenuCreateManyInput | MenuCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Menu createManyAndReturn
+   */
+  export type MenuCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Menus.
+     */
+    data: MenuCreateManyInput | MenuCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Menu update
+   */
+  export type MenuUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Menu.
+     */
+    data: XOR<MenuUpdateInput, MenuUncheckedUpdateInput>
+    /**
+     * Choose, which Menu to update.
+     */
+    where: MenuWhereUniqueInput
+  }
+
+  /**
+   * Menu updateMany
+   */
+  export type MenuUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Menus.
+     */
+    data: XOR<MenuUpdateManyMutationInput, MenuUncheckedUpdateManyInput>
+    /**
+     * Filter which Menus to update
+     */
+    where?: MenuWhereInput
+  }
+
+  /**
+   * Menu upsert
+   */
+  export type MenuUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Menu to update in case it exists.
+     */
+    where: MenuWhereUniqueInput
+    /**
+     * In case the Menu found by the `where` argument doesn't exist, create a new Menu with this data.
+     */
+    create: XOR<MenuCreateInput, MenuUncheckedCreateInput>
+    /**
+     * In case the Menu was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MenuUpdateInput, MenuUncheckedUpdateInput>
+  }
+
+  /**
+   * Menu delete
+   */
+  export type MenuDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    /**
+     * Filter which Menu to delete.
+     */
+    where: MenuWhereUniqueInput
+  }
+
+  /**
+   * Menu deleteMany
+   */
+  export type MenuDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Menus to delete
+     */
+    where?: MenuWhereInput
+  }
+
+  /**
+   * Menu.meta
+   */
+  export type Menu$metaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    where?: MenuMetaWhereInput
+  }
+
+  /**
+   * Menu.parent
+   */
+  export type Menu$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    where?: MenuWhereInput
+  }
+
+  /**
+   * Menu.children
+   */
+  export type Menu$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+    where?: MenuWhereInput
+    orderBy?: MenuOrderByWithRelationInput | MenuOrderByWithRelationInput[]
+    cursor?: MenuWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MenuScalarFieldEnum | MenuScalarFieldEnum[]
+  }
+
+  /**
+   * Menu.roleMenus
+   */
+  export type Menu$roleMenusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    where?: RoleMenuWhereInput
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    cursor?: RoleMenuWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoleMenuScalarFieldEnum | RoleMenuScalarFieldEnum[]
+  }
+
+  /**
+   * Menu without action
+   */
+  export type MenuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Menu
+     */
+    select?: MenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MenuMeta
+   */
+
+  export type AggregateMenuMeta = {
+    _count: MenuMetaCountAggregateOutputType | null
+    _avg: MenuMetaAvgAggregateOutputType | null
+    _sum: MenuMetaSumAggregateOutputType | null
+    _min: MenuMetaMinAggregateOutputType | null
+    _max: MenuMetaMaxAggregateOutputType | null
+  }
+
+  export type MenuMetaAvgAggregateOutputType = {
+    id: number | null
+    order: number | null
+    status: number | null
+    menuId: number | null
+  }
+
+  export type MenuMetaSumAggregateOutputType = {
+    id: number | null
+    order: number | null
+    status: number | null
+    menuId: number | null
+  }
+
+  export type MenuMetaMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    layout: string | null
+    order: number | null
+    hidden: boolean | null
+    disabled: boolean | null
+    icon: string | null
+    status: number | null
+    menuId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenuMetaMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    layout: string | null
+    order: number | null
+    hidden: boolean | null
+    disabled: boolean | null
+    icon: string | null
+    status: number | null
+    menuId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MenuMetaCountAggregateOutputType = {
+    id: number
+    title: number
+    layout: number
+    order: number
+    hidden: number
+    disabled: number
+    icon: number
+    status: number
+    menuId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MenuMetaAvgAggregateInputType = {
+    id?: true
+    order?: true
+    status?: true
+    menuId?: true
+  }
+
+  export type MenuMetaSumAggregateInputType = {
+    id?: true
+    order?: true
+    status?: true
+    menuId?: true
+  }
+
+  export type MenuMetaMinAggregateInputType = {
+    id?: true
+    title?: true
+    layout?: true
+    order?: true
+    hidden?: true
+    disabled?: true
+    icon?: true
+    status?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenuMetaMaxAggregateInputType = {
+    id?: true
+    title?: true
+    layout?: true
+    order?: true
+    hidden?: true
+    disabled?: true
+    icon?: true
+    status?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MenuMetaCountAggregateInputType = {
+    id?: true
+    title?: true
+    layout?: true
+    order?: true
+    hidden?: true
+    disabled?: true
+    icon?: true
+    status?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MenuMetaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MenuMeta to aggregate.
+     */
+    where?: MenuMetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MenuMetas to fetch.
+     */
+    orderBy?: MenuMetaOrderByWithRelationInput | MenuMetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MenuMetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MenuMetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MenuMetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MenuMetas
+    **/
+    _count?: true | MenuMetaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MenuMetaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MenuMetaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MenuMetaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MenuMetaMaxAggregateInputType
+  }
+
+  export type GetMenuMetaAggregateType<T extends MenuMetaAggregateArgs> = {
+        [P in keyof T & keyof AggregateMenuMeta]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMenuMeta[P]>
+      : GetScalarType<T[P], AggregateMenuMeta[P]>
+  }
+
+
+
+
+  export type MenuMetaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MenuMetaWhereInput
+    orderBy?: MenuMetaOrderByWithAggregationInput | MenuMetaOrderByWithAggregationInput[]
+    by: MenuMetaScalarFieldEnum[] | MenuMetaScalarFieldEnum
+    having?: MenuMetaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MenuMetaCountAggregateInputType | true
+    _avg?: MenuMetaAvgAggregateInputType
+    _sum?: MenuMetaSumAggregateInputType
+    _min?: MenuMetaMinAggregateInputType
+    _max?: MenuMetaMaxAggregateInputType
+  }
+
+  export type MenuMetaGroupByOutputType = {
+    id: number
+    title: string | null
+    layout: string | null
+    order: number | null
+    hidden: boolean
+    disabled: boolean
+    icon: string | null
+    status: number
+    menuId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: MenuMetaCountAggregateOutputType | null
+    _avg: MenuMetaAvgAggregateOutputType | null
+    _sum: MenuMetaSumAggregateOutputType | null
+    _min: MenuMetaMinAggregateOutputType | null
+    _max: MenuMetaMaxAggregateOutputType | null
+  }
+
+  type GetMenuMetaGroupByPayload<T extends MenuMetaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MenuMetaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MenuMetaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MenuMetaGroupByOutputType[P]>
+            : GetScalarType<T[P], MenuMetaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MenuMetaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    layout?: boolean
+    order?: boolean
+    hidden?: boolean
+    disabled?: boolean
+    icon?: boolean
+    status?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["menuMeta"]>
+
+  export type MenuMetaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    layout?: boolean
+    order?: boolean
+    hidden?: boolean
+    disabled?: boolean
+    icon?: boolean
+    status?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["menuMeta"]>
+
+  export type MenuMetaSelectScalar = {
+    id?: boolean
+    title?: boolean
+    layout?: boolean
+    order?: boolean
+    hidden?: boolean
+    disabled?: boolean
+    icon?: boolean
+    status?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MenuMetaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }
+  export type MenuMetaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }
+
+  export type $MenuMetaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MenuMeta"
+    objects: {
+      menu: Prisma.$MenuPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string | null
+      layout: string | null
+      order: number | null
+      hidden: boolean
+      disabled: boolean
+      icon: string | null
+      status: number
+      menuId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["menuMeta"]>
+    composites: {}
+  }
+
+  type MenuMetaGetPayload<S extends boolean | null | undefined | MenuMetaDefaultArgs> = $Result.GetResult<Prisma.$MenuMetaPayload, S>
+
+  type MenuMetaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MenuMetaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MenuMetaCountAggregateInputType | true
+    }
+
+  export interface MenuMetaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MenuMeta'], meta: { name: 'MenuMeta' } }
+    /**
+     * Find zero or one MenuMeta that matches the filter.
+     * @param {MenuMetaFindUniqueArgs} args - Arguments to find a MenuMeta
+     * @example
+     * // Get one MenuMeta
+     * const menuMeta = await prisma.menuMeta.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MenuMetaFindUniqueArgs>(args: SelectSubset<T, MenuMetaFindUniqueArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MenuMeta that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MenuMetaFindUniqueOrThrowArgs} args - Arguments to find a MenuMeta
+     * @example
+     * // Get one MenuMeta
+     * const menuMeta = await prisma.menuMeta.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MenuMetaFindUniqueOrThrowArgs>(args: SelectSubset<T, MenuMetaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MenuMeta that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaFindFirstArgs} args - Arguments to find a MenuMeta
+     * @example
+     * // Get one MenuMeta
+     * const menuMeta = await prisma.menuMeta.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MenuMetaFindFirstArgs>(args?: SelectSubset<T, MenuMetaFindFirstArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MenuMeta that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaFindFirstOrThrowArgs} args - Arguments to find a MenuMeta
+     * @example
+     * // Get one MenuMeta
+     * const menuMeta = await prisma.menuMeta.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MenuMetaFindFirstOrThrowArgs>(args?: SelectSubset<T, MenuMetaFindFirstOrThrowArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MenuMetas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MenuMetas
+     * const menuMetas = await prisma.menuMeta.findMany()
+     * 
+     * // Get first 10 MenuMetas
+     * const menuMetas = await prisma.menuMeta.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const menuMetaWithIdOnly = await prisma.menuMeta.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MenuMetaFindManyArgs>(args?: SelectSubset<T, MenuMetaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MenuMeta.
+     * @param {MenuMetaCreateArgs} args - Arguments to create a MenuMeta.
+     * @example
+     * // Create one MenuMeta
+     * const MenuMeta = await prisma.menuMeta.create({
+     *   data: {
+     *     // ... data to create a MenuMeta
+     *   }
+     * })
+     * 
+     */
+    create<T extends MenuMetaCreateArgs>(args: SelectSubset<T, MenuMetaCreateArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MenuMetas.
+     * @param {MenuMetaCreateManyArgs} args - Arguments to create many MenuMetas.
+     * @example
+     * // Create many MenuMetas
+     * const menuMeta = await prisma.menuMeta.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MenuMetaCreateManyArgs>(args?: SelectSubset<T, MenuMetaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MenuMetas and returns the data saved in the database.
+     * @param {MenuMetaCreateManyAndReturnArgs} args - Arguments to create many MenuMetas.
+     * @example
+     * // Create many MenuMetas
+     * const menuMeta = await prisma.menuMeta.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MenuMetas and only return the `id`
+     * const menuMetaWithIdOnly = await prisma.menuMeta.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MenuMetaCreateManyAndReturnArgs>(args?: SelectSubset<T, MenuMetaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MenuMeta.
+     * @param {MenuMetaDeleteArgs} args - Arguments to delete one MenuMeta.
+     * @example
+     * // Delete one MenuMeta
+     * const MenuMeta = await prisma.menuMeta.delete({
+     *   where: {
+     *     // ... filter to delete one MenuMeta
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MenuMetaDeleteArgs>(args: SelectSubset<T, MenuMetaDeleteArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MenuMeta.
+     * @param {MenuMetaUpdateArgs} args - Arguments to update one MenuMeta.
+     * @example
+     * // Update one MenuMeta
+     * const menuMeta = await prisma.menuMeta.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MenuMetaUpdateArgs>(args: SelectSubset<T, MenuMetaUpdateArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MenuMetas.
+     * @param {MenuMetaDeleteManyArgs} args - Arguments to filter MenuMetas to delete.
+     * @example
+     * // Delete a few MenuMetas
+     * const { count } = await prisma.menuMeta.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MenuMetaDeleteManyArgs>(args?: SelectSubset<T, MenuMetaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MenuMetas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MenuMetas
+     * const menuMeta = await prisma.menuMeta.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MenuMetaUpdateManyArgs>(args: SelectSubset<T, MenuMetaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MenuMeta.
+     * @param {MenuMetaUpsertArgs} args - Arguments to update or create a MenuMeta.
+     * @example
+     * // Update or create a MenuMeta
+     * const menuMeta = await prisma.menuMeta.upsert({
+     *   create: {
+     *     // ... data to create a MenuMeta
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MenuMeta we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MenuMetaUpsertArgs>(args: SelectSubset<T, MenuMetaUpsertArgs<ExtArgs>>): Prisma__MenuMetaClient<$Result.GetResult<Prisma.$MenuMetaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MenuMetas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaCountArgs} args - Arguments to filter MenuMetas to count.
+     * @example
+     * // Count the number of MenuMetas
+     * const count = await prisma.menuMeta.count({
+     *   where: {
+     *     // ... the filter for the MenuMetas we want to count
+     *   }
+     * })
+    **/
+    count<T extends MenuMetaCountArgs>(
+      args?: Subset<T, MenuMetaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MenuMetaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MenuMeta.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MenuMetaAggregateArgs>(args: Subset<T, MenuMetaAggregateArgs>): Prisma.PrismaPromise<GetMenuMetaAggregateType<T>>
+
+    /**
+     * Group by MenuMeta.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MenuMetaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MenuMetaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MenuMetaGroupByArgs['orderBy'] }
+        : { orderBy?: MenuMetaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MenuMetaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMenuMetaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MenuMeta model
+   */
+  readonly fields: MenuMetaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MenuMeta.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MenuMetaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    menu<T extends MenuDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MenuDefaultArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MenuMeta model
+   */ 
+  interface MenuMetaFieldRefs {
+    readonly id: FieldRef<"MenuMeta", 'Int'>
+    readonly title: FieldRef<"MenuMeta", 'String'>
+    readonly layout: FieldRef<"MenuMeta", 'String'>
+    readonly order: FieldRef<"MenuMeta", 'Int'>
+    readonly hidden: FieldRef<"MenuMeta", 'Boolean'>
+    readonly disabled: FieldRef<"MenuMeta", 'Boolean'>
+    readonly icon: FieldRef<"MenuMeta", 'String'>
+    readonly status: FieldRef<"MenuMeta", 'Int'>
+    readonly menuId: FieldRef<"MenuMeta", 'Int'>
+    readonly createdAt: FieldRef<"MenuMeta", 'DateTime'>
+    readonly updatedAt: FieldRef<"MenuMeta", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MenuMeta findUnique
+   */
+  export type MenuMetaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter, which MenuMeta to fetch.
+     */
+    where: MenuMetaWhereUniqueInput
+  }
+
+  /**
+   * MenuMeta findUniqueOrThrow
+   */
+  export type MenuMetaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter, which MenuMeta to fetch.
+     */
+    where: MenuMetaWhereUniqueInput
+  }
+
+  /**
+   * MenuMeta findFirst
+   */
+  export type MenuMetaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter, which MenuMeta to fetch.
+     */
+    where?: MenuMetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MenuMetas to fetch.
+     */
+    orderBy?: MenuMetaOrderByWithRelationInput | MenuMetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MenuMetas.
+     */
+    cursor?: MenuMetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MenuMetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MenuMetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MenuMetas.
+     */
+    distinct?: MenuMetaScalarFieldEnum | MenuMetaScalarFieldEnum[]
+  }
+
+  /**
+   * MenuMeta findFirstOrThrow
+   */
+  export type MenuMetaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter, which MenuMeta to fetch.
+     */
+    where?: MenuMetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MenuMetas to fetch.
+     */
+    orderBy?: MenuMetaOrderByWithRelationInput | MenuMetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MenuMetas.
+     */
+    cursor?: MenuMetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MenuMetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MenuMetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MenuMetas.
+     */
+    distinct?: MenuMetaScalarFieldEnum | MenuMetaScalarFieldEnum[]
+  }
+
+  /**
+   * MenuMeta findMany
+   */
+  export type MenuMetaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter, which MenuMetas to fetch.
+     */
+    where?: MenuMetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MenuMetas to fetch.
+     */
+    orderBy?: MenuMetaOrderByWithRelationInput | MenuMetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MenuMetas.
+     */
+    cursor?: MenuMetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MenuMetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MenuMetas.
+     */
+    skip?: number
+    distinct?: MenuMetaScalarFieldEnum | MenuMetaScalarFieldEnum[]
+  }
+
+  /**
+   * MenuMeta create
+   */
+  export type MenuMetaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MenuMeta.
+     */
+    data: XOR<MenuMetaCreateInput, MenuMetaUncheckedCreateInput>
+  }
+
+  /**
+   * MenuMeta createMany
+   */
+  export type MenuMetaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MenuMetas.
+     */
+    data: MenuMetaCreateManyInput | MenuMetaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MenuMeta createManyAndReturn
+   */
+  export type MenuMetaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MenuMetas.
+     */
+    data: MenuMetaCreateManyInput | MenuMetaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MenuMeta update
+   */
+  export type MenuMetaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MenuMeta.
+     */
+    data: XOR<MenuMetaUpdateInput, MenuMetaUncheckedUpdateInput>
+    /**
+     * Choose, which MenuMeta to update.
+     */
+    where: MenuMetaWhereUniqueInput
+  }
+
+  /**
+   * MenuMeta updateMany
+   */
+  export type MenuMetaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MenuMetas.
+     */
+    data: XOR<MenuMetaUpdateManyMutationInput, MenuMetaUncheckedUpdateManyInput>
+    /**
+     * Filter which MenuMetas to update
+     */
+    where?: MenuMetaWhereInput
+  }
+
+  /**
+   * MenuMeta upsert
+   */
+  export type MenuMetaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MenuMeta to update in case it exists.
+     */
+    where: MenuMetaWhereUniqueInput
+    /**
+     * In case the MenuMeta found by the `where` argument doesn't exist, create a new MenuMeta with this data.
+     */
+    create: XOR<MenuMetaCreateInput, MenuMetaUncheckedCreateInput>
+    /**
+     * In case the MenuMeta was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MenuMetaUpdateInput, MenuMetaUncheckedUpdateInput>
+  }
+
+  /**
+   * MenuMeta delete
+   */
+  export type MenuMetaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+    /**
+     * Filter which MenuMeta to delete.
+     */
+    where: MenuMetaWhereUniqueInput
+  }
+
+  /**
+   * MenuMeta deleteMany
+   */
+  export type MenuMetaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MenuMetas to delete
+     */
+    where?: MenuMetaWhereInput
+  }
+
+  /**
+   * MenuMeta without action
+   */
+  export type MenuMetaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MenuMeta
+     */
+    select?: MenuMetaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MenuMetaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RoleMenu
+   */
+
+  export type AggregateRoleMenu = {
+    _count: RoleMenuCountAggregateOutputType | null
+    _avg: RoleMenuAvgAggregateOutputType | null
+    _sum: RoleMenuSumAggregateOutputType | null
+    _min: RoleMenuMinAggregateOutputType | null
+    _max: RoleMenuMaxAggregateOutputType | null
+  }
+
+  export type RoleMenuAvgAggregateOutputType = {
+    roleId: number | null
+    menuId: number | null
+  }
+
+  export type RoleMenuSumAggregateOutputType = {
+    roleId: number | null
+    menuId: number | null
+  }
+
+  export type RoleMenuMinAggregateOutputType = {
+    roleId: number | null
+    menuId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RoleMenuMaxAggregateOutputType = {
+    roleId: number | null
+    menuId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RoleMenuCountAggregateOutputType = {
+    roleId: number
+    menuId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RoleMenuAvgAggregateInputType = {
+    roleId?: true
+    menuId?: true
+  }
+
+  export type RoleMenuSumAggregateInputType = {
+    roleId?: true
+    menuId?: true
+  }
+
+  export type RoleMenuMinAggregateInputType = {
+    roleId?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RoleMenuMaxAggregateInputType = {
+    roleId?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RoleMenuCountAggregateInputType = {
+    roleId?: true
+    menuId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RoleMenuAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoleMenu to aggregate.
+     */
+    where?: RoleMenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoleMenus to fetch.
+     */
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoleMenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoleMenus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoleMenus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RoleMenus
+    **/
+    _count?: true | RoleMenuCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RoleMenuAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RoleMenuSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoleMenuMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoleMenuMaxAggregateInputType
+  }
+
+  export type GetRoleMenuAggregateType<T extends RoleMenuAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoleMenu]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoleMenu[P]>
+      : GetScalarType<T[P], AggregateRoleMenu[P]>
+  }
+
+
+
+
+  export type RoleMenuGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoleMenuWhereInput
+    orderBy?: RoleMenuOrderByWithAggregationInput | RoleMenuOrderByWithAggregationInput[]
+    by: RoleMenuScalarFieldEnum[] | RoleMenuScalarFieldEnum
+    having?: RoleMenuScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoleMenuCountAggregateInputType | true
+    _avg?: RoleMenuAvgAggregateInputType
+    _sum?: RoleMenuSumAggregateInputType
+    _min?: RoleMenuMinAggregateInputType
+    _max?: RoleMenuMaxAggregateInputType
+  }
+
+  export type RoleMenuGroupByOutputType = {
+    roleId: number
+    menuId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: RoleMenuCountAggregateOutputType | null
+    _avg: RoleMenuAvgAggregateOutputType | null
+    _sum: RoleMenuSumAggregateOutputType | null
+    _min: RoleMenuMinAggregateOutputType | null
+    _max: RoleMenuMaxAggregateOutputType | null
+  }
+
+  type GetRoleMenuGroupByPayload<T extends RoleMenuGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoleMenuGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoleMenuGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoleMenuGroupByOutputType[P]>
+            : GetScalarType<T[P], RoleMenuGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoleMenuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    roleId?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roleMenu"]>
+
+  export type RoleMenuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    roleId?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roleMenu"]>
+
+  export type RoleMenuSelectScalar = {
+    roleId?: boolean
+    menuId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RoleMenuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }
+  export type RoleMenuIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+    menu?: boolean | MenuDefaultArgs<ExtArgs>
+  }
+
+  export type $RoleMenuPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RoleMenu"
+    objects: {
+      role: Prisma.$RolePayload<ExtArgs>
+      menu: Prisma.$MenuPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      roleId: number
+      menuId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["roleMenu"]>
+    composites: {}
+  }
+
+  type RoleMenuGetPayload<S extends boolean | null | undefined | RoleMenuDefaultArgs> = $Result.GetResult<Prisma.$RoleMenuPayload, S>
+
+  type RoleMenuCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<RoleMenuFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: RoleMenuCountAggregateInputType | true
+    }
+
+  export interface RoleMenuDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoleMenu'], meta: { name: 'RoleMenu' } }
+    /**
+     * Find zero or one RoleMenu that matches the filter.
+     * @param {RoleMenuFindUniqueArgs} args - Arguments to find a RoleMenu
+     * @example
+     * // Get one RoleMenu
+     * const roleMenu = await prisma.roleMenu.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoleMenuFindUniqueArgs>(args: SelectSubset<T, RoleMenuFindUniqueArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one RoleMenu that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {RoleMenuFindUniqueOrThrowArgs} args - Arguments to find a RoleMenu
+     * @example
+     * // Get one RoleMenu
+     * const roleMenu = await prisma.roleMenu.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoleMenuFindUniqueOrThrowArgs>(args: SelectSubset<T, RoleMenuFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first RoleMenu that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuFindFirstArgs} args - Arguments to find a RoleMenu
+     * @example
+     * // Get one RoleMenu
+     * const roleMenu = await prisma.roleMenu.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoleMenuFindFirstArgs>(args?: SelectSubset<T, RoleMenuFindFirstArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first RoleMenu that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuFindFirstOrThrowArgs} args - Arguments to find a RoleMenu
+     * @example
+     * // Get one RoleMenu
+     * const roleMenu = await prisma.roleMenu.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoleMenuFindFirstOrThrowArgs>(args?: SelectSubset<T, RoleMenuFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more RoleMenus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RoleMenus
+     * const roleMenus = await prisma.roleMenu.findMany()
+     * 
+     * // Get first 10 RoleMenus
+     * const roleMenus = await prisma.roleMenu.findMany({ take: 10 })
+     * 
+     * // Only select the `roleId`
+     * const roleMenuWithRoleIdOnly = await prisma.roleMenu.findMany({ select: { roleId: true } })
+     * 
+     */
+    findMany<T extends RoleMenuFindManyArgs>(args?: SelectSubset<T, RoleMenuFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a RoleMenu.
+     * @param {RoleMenuCreateArgs} args - Arguments to create a RoleMenu.
+     * @example
+     * // Create one RoleMenu
+     * const RoleMenu = await prisma.roleMenu.create({
+     *   data: {
+     *     // ... data to create a RoleMenu
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoleMenuCreateArgs>(args: SelectSubset<T, RoleMenuCreateArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many RoleMenus.
+     * @param {RoleMenuCreateManyArgs} args - Arguments to create many RoleMenus.
+     * @example
+     * // Create many RoleMenus
+     * const roleMenu = await prisma.roleMenu.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoleMenuCreateManyArgs>(args?: SelectSubset<T, RoleMenuCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RoleMenus and returns the data saved in the database.
+     * @param {RoleMenuCreateManyAndReturnArgs} args - Arguments to create many RoleMenus.
+     * @example
+     * // Create many RoleMenus
+     * const roleMenu = await prisma.roleMenu.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RoleMenus and only return the `roleId`
+     * const roleMenuWithRoleIdOnly = await prisma.roleMenu.createManyAndReturn({ 
+     *   select: { roleId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoleMenuCreateManyAndReturnArgs>(args?: SelectSubset<T, RoleMenuCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a RoleMenu.
+     * @param {RoleMenuDeleteArgs} args - Arguments to delete one RoleMenu.
+     * @example
+     * // Delete one RoleMenu
+     * const RoleMenu = await prisma.roleMenu.delete({
+     *   where: {
+     *     // ... filter to delete one RoleMenu
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoleMenuDeleteArgs>(args: SelectSubset<T, RoleMenuDeleteArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one RoleMenu.
+     * @param {RoleMenuUpdateArgs} args - Arguments to update one RoleMenu.
+     * @example
+     * // Update one RoleMenu
+     * const roleMenu = await prisma.roleMenu.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoleMenuUpdateArgs>(args: SelectSubset<T, RoleMenuUpdateArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more RoleMenus.
+     * @param {RoleMenuDeleteManyArgs} args - Arguments to filter RoleMenus to delete.
+     * @example
+     * // Delete a few RoleMenus
+     * const { count } = await prisma.roleMenu.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoleMenuDeleteManyArgs>(args?: SelectSubset<T, RoleMenuDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoleMenus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RoleMenus
+     * const roleMenu = await prisma.roleMenu.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoleMenuUpdateManyArgs>(args: SelectSubset<T, RoleMenuUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one RoleMenu.
+     * @param {RoleMenuUpsertArgs} args - Arguments to update or create a RoleMenu.
+     * @example
+     * // Update or create a RoleMenu
+     * const roleMenu = await prisma.roleMenu.upsert({
+     *   create: {
+     *     // ... data to create a RoleMenu
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RoleMenu we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoleMenuUpsertArgs>(args: SelectSubset<T, RoleMenuUpsertArgs<ExtArgs>>): Prisma__RoleMenuClient<$Result.GetResult<Prisma.$RoleMenuPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of RoleMenus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuCountArgs} args - Arguments to filter RoleMenus to count.
+     * @example
+     * // Count the number of RoleMenus
+     * const count = await prisma.roleMenu.count({
+     *   where: {
+     *     // ... the filter for the RoleMenus we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoleMenuCountArgs>(
+      args?: Subset<T, RoleMenuCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoleMenuCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RoleMenu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoleMenuAggregateArgs>(args: Subset<T, RoleMenuAggregateArgs>): Prisma.PrismaPromise<GetRoleMenuAggregateType<T>>
+
+    /**
+     * Group by RoleMenu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoleMenuGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoleMenuGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoleMenuGroupByArgs['orderBy'] }
+        : { orderBy?: RoleMenuGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoleMenuGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoleMenuGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RoleMenu model
+   */
+  readonly fields: RoleMenuFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RoleMenu.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoleMenuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    menu<T extends MenuDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MenuDefaultArgs<ExtArgs>>): Prisma__MenuClient<$Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RoleMenu model
+   */ 
+  interface RoleMenuFieldRefs {
+    readonly roleId: FieldRef<"RoleMenu", 'Int'>
+    readonly menuId: FieldRef<"RoleMenu", 'Int'>
+    readonly createdAt: FieldRef<"RoleMenu", 'DateTime'>
+    readonly updatedAt: FieldRef<"RoleMenu", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RoleMenu findUnique
+   */
+  export type RoleMenuFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter, which RoleMenu to fetch.
+     */
+    where: RoleMenuWhereUniqueInput
+  }
+
+  /**
+   * RoleMenu findUniqueOrThrow
+   */
+  export type RoleMenuFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter, which RoleMenu to fetch.
+     */
+    where: RoleMenuWhereUniqueInput
+  }
+
+  /**
+   * RoleMenu findFirst
+   */
+  export type RoleMenuFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter, which RoleMenu to fetch.
+     */
+    where?: RoleMenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoleMenus to fetch.
+     */
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoleMenus.
+     */
+    cursor?: RoleMenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoleMenus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoleMenus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoleMenus.
+     */
+    distinct?: RoleMenuScalarFieldEnum | RoleMenuScalarFieldEnum[]
+  }
+
+  /**
+   * RoleMenu findFirstOrThrow
+   */
+  export type RoleMenuFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter, which RoleMenu to fetch.
+     */
+    where?: RoleMenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoleMenus to fetch.
+     */
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoleMenus.
+     */
+    cursor?: RoleMenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoleMenus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoleMenus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoleMenus.
+     */
+    distinct?: RoleMenuScalarFieldEnum | RoleMenuScalarFieldEnum[]
+  }
+
+  /**
+   * RoleMenu findMany
+   */
+  export type RoleMenuFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter, which RoleMenus to fetch.
+     */
+    where?: RoleMenuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoleMenus to fetch.
+     */
+    orderBy?: RoleMenuOrderByWithRelationInput | RoleMenuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RoleMenus.
+     */
+    cursor?: RoleMenuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoleMenus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoleMenus.
+     */
+    skip?: number
+    distinct?: RoleMenuScalarFieldEnum | RoleMenuScalarFieldEnum[]
+  }
+
+  /**
+   * RoleMenu create
+   */
+  export type RoleMenuCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RoleMenu.
+     */
+    data: XOR<RoleMenuCreateInput, RoleMenuUncheckedCreateInput>
+  }
+
+  /**
+   * RoleMenu createMany
+   */
+  export type RoleMenuCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RoleMenus.
+     */
+    data: RoleMenuCreateManyInput | RoleMenuCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RoleMenu createManyAndReturn
+   */
+  export type RoleMenuCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many RoleMenus.
+     */
+    data: RoleMenuCreateManyInput | RoleMenuCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoleMenu update
+   */
+  export type RoleMenuUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RoleMenu.
+     */
+    data: XOR<RoleMenuUpdateInput, RoleMenuUncheckedUpdateInput>
+    /**
+     * Choose, which RoleMenu to update.
+     */
+    where: RoleMenuWhereUniqueInput
+  }
+
+  /**
+   * RoleMenu updateMany
+   */
+  export type RoleMenuUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RoleMenus.
+     */
+    data: XOR<RoleMenuUpdateManyMutationInput, RoleMenuUncheckedUpdateManyInput>
+    /**
+     * Filter which RoleMenus to update
+     */
+    where?: RoleMenuWhereInput
+  }
+
+  /**
+   * RoleMenu upsert
+   */
+  export type RoleMenuUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RoleMenu to update in case it exists.
+     */
+    where: RoleMenuWhereUniqueInput
+    /**
+     * In case the RoleMenu found by the `where` argument doesn't exist, create a new RoleMenu with this data.
+     */
+    create: XOR<RoleMenuCreateInput, RoleMenuUncheckedCreateInput>
+    /**
+     * In case the RoleMenu was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoleMenuUpdateInput, RoleMenuUncheckedUpdateInput>
+  }
+
+  /**
+   * RoleMenu delete
+   */
+  export type RoleMenuDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+    /**
+     * Filter which RoleMenu to delete.
+     */
+    where: RoleMenuWhereUniqueInput
+  }
+
+  /**
+   * RoleMenu deleteMany
+   */
+  export type RoleMenuDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoleMenus to delete
+     */
+    where?: RoleMenuWhereInput
+  }
+
+  /**
+   * RoleMenu without action
+   */
+  export type RoleMenuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoleMenu
+     */
+    select?: RoleMenuSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleMenuInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9485,6 +12991,52 @@ export namespace Prisma {
   };
 
   export type PermissionPolicyScalarFieldEnum = (typeof PermissionPolicyScalarFieldEnum)[keyof typeof PermissionPolicyScalarFieldEnum]
+
+
+  export const MenuScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    path: 'path',
+    label: 'label',
+    component: 'component',
+    redirect: 'redirect',
+    fullPath: 'fullPath',
+    alias: 'alias',
+    status: 'status',
+    parentId: 'parentId',
+    metaId: 'metaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MenuScalarFieldEnum = (typeof MenuScalarFieldEnum)[keyof typeof MenuScalarFieldEnum]
+
+
+  export const MenuMetaScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    layout: 'layout',
+    order: 'order',
+    hidden: 'hidden',
+    disabled: 'disabled',
+    icon: 'icon',
+    status: 'status',
+    menuId: 'menuId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MenuMetaScalarFieldEnum = (typeof MenuMetaScalarFieldEnum)[keyof typeof MenuMetaScalarFieldEnum]
+
+
+  export const RoleMenuScalarFieldEnum: {
+    roleId: 'roleId',
+    menuId: 'menuId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RoleMenuScalarFieldEnum = (typeof RoleMenuScalarFieldEnum)[keyof typeof RoleMenuScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9583,6 +13135,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -9666,6 +13225,7 @@ export namespace Prisma {
     users?: UserRoleListRelationFilter
     RolePermissions?: RolePermissionsListRelationFilter
     RolePolicy?: RolePolicyListRelationFilter
+    RoleMenu?: RoleMenuListRelationFilter
   }
 
   export type RoleOrderByWithRelationInput = {
@@ -9675,6 +13235,7 @@ export namespace Prisma {
     users?: UserRoleOrderByRelationAggregateInput
     RolePermissions?: RolePermissionsOrderByRelationAggregateInput
     RolePolicy?: RolePolicyOrderByRelationAggregateInput
+    RoleMenu?: RoleMenuOrderByRelationAggregateInput
   }
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
@@ -9687,6 +13248,7 @@ export namespace Prisma {
     users?: UserRoleListRelationFilter
     RolePermissions?: RolePermissionsListRelationFilter
     RolePolicy?: RolePolicyListRelationFilter
+    RoleMenu?: RoleMenuListRelationFilter
   }, "id" | "name">
 
   export type RoleOrderByWithAggregationInput = {
@@ -10028,6 +13590,255 @@ export namespace Prisma {
     policyId?: IntWithAggregatesFilter<"PermissionPolicy"> | number
   }
 
+  export type MenuWhereInput = {
+    AND?: MenuWhereInput | MenuWhereInput[]
+    OR?: MenuWhereInput[]
+    NOT?: MenuWhereInput | MenuWhereInput[]
+    id?: IntFilter<"Menu"> | number
+    name?: StringFilter<"Menu"> | string
+    path?: StringFilter<"Menu"> | string
+    label?: StringFilter<"Menu"> | string
+    component?: StringNullableFilter<"Menu"> | string | null
+    redirect?: StringNullableFilter<"Menu"> | string | null
+    fullPath?: StringNullableFilter<"Menu"> | string | null
+    alias?: StringNullableFilter<"Menu"> | string | null
+    status?: IntFilter<"Menu"> | number
+    parentId?: IntNullableFilter<"Menu"> | number | null
+    metaId?: IntNullableFilter<"Menu"> | number | null
+    createdAt?: DateTimeFilter<"Menu"> | Date | string
+    updatedAt?: DateTimeFilter<"Menu"> | Date | string
+    meta?: XOR<MenuMetaNullableRelationFilter, MenuMetaWhereInput> | null
+    parent?: XOR<MenuNullableRelationFilter, MenuWhereInput> | null
+    children?: MenuListRelationFilter
+    roleMenus?: RoleMenuListRelationFilter
+  }
+
+  export type MenuOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    path?: SortOrder
+    label?: SortOrder
+    component?: SortOrderInput | SortOrder
+    redirect?: SortOrderInput | SortOrder
+    fullPath?: SortOrderInput | SortOrder
+    alias?: SortOrderInput | SortOrder
+    status?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    metaId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    meta?: MenuMetaOrderByWithRelationInput
+    parent?: MenuOrderByWithRelationInput
+    children?: MenuOrderByRelationAggregateInput
+    roleMenus?: RoleMenuOrderByRelationAggregateInput
+  }
+
+  export type MenuWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    metaId?: number
+    AND?: MenuWhereInput | MenuWhereInput[]
+    OR?: MenuWhereInput[]
+    NOT?: MenuWhereInput | MenuWhereInput[]
+    path?: StringFilter<"Menu"> | string
+    label?: StringFilter<"Menu"> | string
+    component?: StringNullableFilter<"Menu"> | string | null
+    redirect?: StringNullableFilter<"Menu"> | string | null
+    fullPath?: StringNullableFilter<"Menu"> | string | null
+    alias?: StringNullableFilter<"Menu"> | string | null
+    status?: IntFilter<"Menu"> | number
+    parentId?: IntNullableFilter<"Menu"> | number | null
+    createdAt?: DateTimeFilter<"Menu"> | Date | string
+    updatedAt?: DateTimeFilter<"Menu"> | Date | string
+    meta?: XOR<MenuMetaNullableRelationFilter, MenuMetaWhereInput> | null
+    parent?: XOR<MenuNullableRelationFilter, MenuWhereInput> | null
+    children?: MenuListRelationFilter
+    roleMenus?: RoleMenuListRelationFilter
+  }, "id" | "name" | "metaId">
+
+  export type MenuOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    path?: SortOrder
+    label?: SortOrder
+    component?: SortOrderInput | SortOrder
+    redirect?: SortOrderInput | SortOrder
+    fullPath?: SortOrderInput | SortOrder
+    alias?: SortOrderInput | SortOrder
+    status?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    metaId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MenuCountOrderByAggregateInput
+    _avg?: MenuAvgOrderByAggregateInput
+    _max?: MenuMaxOrderByAggregateInput
+    _min?: MenuMinOrderByAggregateInput
+    _sum?: MenuSumOrderByAggregateInput
+  }
+
+  export type MenuScalarWhereWithAggregatesInput = {
+    AND?: MenuScalarWhereWithAggregatesInput | MenuScalarWhereWithAggregatesInput[]
+    OR?: MenuScalarWhereWithAggregatesInput[]
+    NOT?: MenuScalarWhereWithAggregatesInput | MenuScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Menu"> | number
+    name?: StringWithAggregatesFilter<"Menu"> | string
+    path?: StringWithAggregatesFilter<"Menu"> | string
+    label?: StringWithAggregatesFilter<"Menu"> | string
+    component?: StringNullableWithAggregatesFilter<"Menu"> | string | null
+    redirect?: StringNullableWithAggregatesFilter<"Menu"> | string | null
+    fullPath?: StringNullableWithAggregatesFilter<"Menu"> | string | null
+    alias?: StringNullableWithAggregatesFilter<"Menu"> | string | null
+    status?: IntWithAggregatesFilter<"Menu"> | number
+    parentId?: IntNullableWithAggregatesFilter<"Menu"> | number | null
+    metaId?: IntNullableWithAggregatesFilter<"Menu"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Menu"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Menu"> | Date | string
+  }
+
+  export type MenuMetaWhereInput = {
+    AND?: MenuMetaWhereInput | MenuMetaWhereInput[]
+    OR?: MenuMetaWhereInput[]
+    NOT?: MenuMetaWhereInput | MenuMetaWhereInput[]
+    id?: IntFilter<"MenuMeta"> | number
+    title?: StringNullableFilter<"MenuMeta"> | string | null
+    layout?: StringNullableFilter<"MenuMeta"> | string | null
+    order?: IntNullableFilter<"MenuMeta"> | number | null
+    hidden?: BoolFilter<"MenuMeta"> | boolean
+    disabled?: BoolFilter<"MenuMeta"> | boolean
+    icon?: StringNullableFilter<"MenuMeta"> | string | null
+    status?: IntFilter<"MenuMeta"> | number
+    menuId?: IntFilter<"MenuMeta"> | number
+    createdAt?: DateTimeFilter<"MenuMeta"> | Date | string
+    updatedAt?: DateTimeFilter<"MenuMeta"> | Date | string
+    menu?: XOR<MenuRelationFilter, MenuWhereInput>
+  }
+
+  export type MenuMetaOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrderInput | SortOrder
+    layout?: SortOrderInput | SortOrder
+    order?: SortOrderInput | SortOrder
+    hidden?: SortOrder
+    disabled?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    menu?: MenuOrderByWithRelationInput
+  }
+
+  export type MenuMetaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    menuId?: number
+    AND?: MenuMetaWhereInput | MenuMetaWhereInput[]
+    OR?: MenuMetaWhereInput[]
+    NOT?: MenuMetaWhereInput | MenuMetaWhereInput[]
+    title?: StringNullableFilter<"MenuMeta"> | string | null
+    layout?: StringNullableFilter<"MenuMeta"> | string | null
+    order?: IntNullableFilter<"MenuMeta"> | number | null
+    hidden?: BoolFilter<"MenuMeta"> | boolean
+    disabled?: BoolFilter<"MenuMeta"> | boolean
+    icon?: StringNullableFilter<"MenuMeta"> | string | null
+    status?: IntFilter<"MenuMeta"> | number
+    createdAt?: DateTimeFilter<"MenuMeta"> | Date | string
+    updatedAt?: DateTimeFilter<"MenuMeta"> | Date | string
+    menu?: XOR<MenuRelationFilter, MenuWhereInput>
+  }, "id" | "menuId">
+
+  export type MenuMetaOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrderInput | SortOrder
+    layout?: SortOrderInput | SortOrder
+    order?: SortOrderInput | SortOrder
+    hidden?: SortOrder
+    disabled?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MenuMetaCountOrderByAggregateInput
+    _avg?: MenuMetaAvgOrderByAggregateInput
+    _max?: MenuMetaMaxOrderByAggregateInput
+    _min?: MenuMetaMinOrderByAggregateInput
+    _sum?: MenuMetaSumOrderByAggregateInput
+  }
+
+  export type MenuMetaScalarWhereWithAggregatesInput = {
+    AND?: MenuMetaScalarWhereWithAggregatesInput | MenuMetaScalarWhereWithAggregatesInput[]
+    OR?: MenuMetaScalarWhereWithAggregatesInput[]
+    NOT?: MenuMetaScalarWhereWithAggregatesInput | MenuMetaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MenuMeta"> | number
+    title?: StringNullableWithAggregatesFilter<"MenuMeta"> | string | null
+    layout?: StringNullableWithAggregatesFilter<"MenuMeta"> | string | null
+    order?: IntNullableWithAggregatesFilter<"MenuMeta"> | number | null
+    hidden?: BoolWithAggregatesFilter<"MenuMeta"> | boolean
+    disabled?: BoolWithAggregatesFilter<"MenuMeta"> | boolean
+    icon?: StringNullableWithAggregatesFilter<"MenuMeta"> | string | null
+    status?: IntWithAggregatesFilter<"MenuMeta"> | number
+    menuId?: IntWithAggregatesFilter<"MenuMeta"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"MenuMeta"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MenuMeta"> | Date | string
+  }
+
+  export type RoleMenuWhereInput = {
+    AND?: RoleMenuWhereInput | RoleMenuWhereInput[]
+    OR?: RoleMenuWhereInput[]
+    NOT?: RoleMenuWhereInput | RoleMenuWhereInput[]
+    roleId?: IntFilter<"RoleMenu"> | number
+    menuId?: IntFilter<"RoleMenu"> | number
+    createdAt?: DateTimeFilter<"RoleMenu"> | Date | string
+    updatedAt?: DateTimeFilter<"RoleMenu"> | Date | string
+    role?: XOR<RoleRelationFilter, RoleWhereInput>
+    menu?: XOR<MenuRelationFilter, MenuWhereInput>
+  }
+
+  export type RoleMenuOrderByWithRelationInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    role?: RoleOrderByWithRelationInput
+    menu?: MenuOrderByWithRelationInput
+  }
+
+  export type RoleMenuWhereUniqueInput = Prisma.AtLeast<{
+    roleId_menuId?: RoleMenuRoleIdMenuIdCompoundUniqueInput
+    AND?: RoleMenuWhereInput | RoleMenuWhereInput[]
+    OR?: RoleMenuWhereInput[]
+    NOT?: RoleMenuWhereInput | RoleMenuWhereInput[]
+    roleId?: IntFilter<"RoleMenu"> | number
+    menuId?: IntFilter<"RoleMenu"> | number
+    createdAt?: DateTimeFilter<"RoleMenu"> | Date | string
+    updatedAt?: DateTimeFilter<"RoleMenu"> | Date | string
+    role?: XOR<RoleRelationFilter, RoleWhereInput>
+    menu?: XOR<MenuRelationFilter, MenuWhereInput>
+  }, "roleId_menuId">
+
+  export type RoleMenuOrderByWithAggregationInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RoleMenuCountOrderByAggregateInput
+    _avg?: RoleMenuAvgOrderByAggregateInput
+    _max?: RoleMenuMaxOrderByAggregateInput
+    _min?: RoleMenuMinOrderByAggregateInput
+    _sum?: RoleMenuSumOrderByAggregateInput
+  }
+
+  export type RoleMenuScalarWhereWithAggregatesInput = {
+    AND?: RoleMenuScalarWhereWithAggregatesInput | RoleMenuScalarWhereWithAggregatesInput[]
+    OR?: RoleMenuScalarWhereWithAggregatesInput[]
+    NOT?: RoleMenuScalarWhereWithAggregatesInput | RoleMenuScalarWhereWithAggregatesInput[]
+    roleId?: IntWithAggregatesFilter<"RoleMenu"> | number
+    menuId?: IntWithAggregatesFilter<"RoleMenu"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"RoleMenu"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RoleMenu"> | Date | string
+  }
+
   export type UserCreateInput = {
     username: string
     password: string
@@ -10091,6 +13902,7 @@ export namespace Prisma {
     users?: UserRoleCreateNestedManyWithoutRoleInput
     RolePermissions?: RolePermissionsCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateInput = {
@@ -10100,6 +13912,7 @@ export namespace Prisma {
     users?: UserRoleUncheckedCreateNestedManyWithoutRoleInput
     RolePermissions?: RolePermissionsUncheckedCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyUncheckedCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUpdateInput = {
@@ -10108,6 +13921,7 @@ export namespace Prisma {
     users?: UserRoleUpdateManyWithoutRoleNestedInput
     RolePermissions?: RolePermissionsUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateInput = {
@@ -10117,6 +13931,7 @@ export namespace Prisma {
     users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput
     RolePermissions?: RolePermissionsUncheckedUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUncheckedUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleCreateManyInput = {
@@ -10415,6 +14230,267 @@ export namespace Prisma {
     policyId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type MenuCreateInput = {
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaCreateNestedOneWithoutMenuInput
+    parent?: MenuCreateNestedOneWithoutChildrenInput
+    children?: MenuCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuUncheckedCreateInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    parentId?: number | null
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaUncheckedCreateNestedOneWithoutMenuInput
+    children?: MenuUncheckedCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuUncheckedCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUpdateOneWithoutMenuNestedInput
+    parent?: MenuUpdateOneWithoutChildrenNestedInput
+    children?: MenuUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUncheckedUpdateOneWithoutMenuNestedInput
+    children?: MenuUncheckedUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUncheckedUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuCreateManyInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    parentId?: number | null
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuMetaCreateInput = {
+    title?: string | null
+    layout?: string | null
+    order?: number | null
+    hidden?: boolean
+    disabled?: boolean
+    icon?: string | null
+    status?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    menu: MenuCreateNestedOneWithoutMetaInput
+  }
+
+  export type MenuMetaUncheckedCreateInput = {
+    id?: number
+    title?: string | null
+    layout?: string | null
+    order?: number | null
+    hidden?: boolean
+    disabled?: boolean
+    icon?: string | null
+    status?: number
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuMetaUpdateInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menu?: MenuUpdateOneRequiredWithoutMetaNestedInput
+  }
+
+  export type MenuMetaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuMetaCreateManyInput = {
+    id?: number
+    title?: string | null
+    layout?: string | null
+    order?: number | null
+    hidden?: boolean
+    disabled?: boolean
+    icon?: string | null
+    status?: number
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuMetaUpdateManyMutationInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuMetaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuCreateInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: RoleCreateNestedOneWithoutRoleMenuInput
+    menu: MenuCreateNestedOneWithoutRoleMenusInput
+  }
+
+  export type RoleMenuUncheckedCreateInput = {
+    roleId: number
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoleMenuUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneRequiredWithoutRoleMenuNestedInput
+    menu?: MenuUpdateOneRequiredWithoutRoleMenusNestedInput
+  }
+
+  export type RoleMenuUncheckedUpdateInput = {
+    roleId?: IntFieldUpdateOperationsInput | number
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuCreateManyInput = {
+    roleId: number
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoleMenuUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuUncheckedUpdateManyInput = {
+    roleId?: IntFieldUpdateOperationsInput | number
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -10569,6 +14645,12 @@ export namespace Prisma {
     none?: RolePolicyWhereInput
   }
 
+  export type RoleMenuListRelationFilter = {
+    every?: RoleMenuWhereInput
+    some?: RoleMenuWhereInput
+    none?: RoleMenuWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -10579,6 +14661,10 @@ export namespace Prisma {
   }
 
   export type RolePolicyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RoleMenuOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10892,6 +14978,225 @@ export namespace Prisma {
     policyId?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type MenuMetaNullableRelationFilter = {
+    is?: MenuMetaWhereInput | null
+    isNot?: MenuMetaWhereInput | null
+  }
+
+  export type MenuNullableRelationFilter = {
+    is?: MenuWhereInput | null
+    isNot?: MenuWhereInput | null
+  }
+
+  export type MenuListRelationFilter = {
+    every?: MenuWhereInput
+    some?: MenuWhereInput
+    none?: MenuWhereInput
+  }
+
+  export type MenuOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MenuCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    path?: SortOrder
+    label?: SortOrder
+    component?: SortOrder
+    redirect?: SortOrder
+    fullPath?: SortOrder
+    alias?: SortOrder
+    status?: SortOrder
+    parentId?: SortOrder
+    metaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuAvgOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    parentId?: SortOrder
+    metaId?: SortOrder
+  }
+
+  export type MenuMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    path?: SortOrder
+    label?: SortOrder
+    component?: SortOrder
+    redirect?: SortOrder
+    fullPath?: SortOrder
+    alias?: SortOrder
+    status?: SortOrder
+    parentId?: SortOrder
+    metaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    path?: SortOrder
+    label?: SortOrder
+    component?: SortOrder
+    redirect?: SortOrder
+    fullPath?: SortOrder
+    alias?: SortOrder
+    status?: SortOrder
+    parentId?: SortOrder
+    metaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuSumOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    parentId?: SortOrder
+    metaId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type MenuRelationFilter = {
+    is?: MenuWhereInput
+    isNot?: MenuWhereInput
+  }
+
+  export type MenuMetaCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    layout?: SortOrder
+    order?: SortOrder
+    hidden?: SortOrder
+    disabled?: SortOrder
+    icon?: SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuMetaAvgOrderByAggregateInput = {
+    id?: SortOrder
+    order?: SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+  }
+
+  export type MenuMetaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    layout?: SortOrder
+    order?: SortOrder
+    hidden?: SortOrder
+    disabled?: SortOrder
+    icon?: SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuMetaMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    layout?: SortOrder
+    order?: SortOrder
+    hidden?: SortOrder
+    disabled?: SortOrder
+    icon?: SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MenuMetaSumOrderByAggregateInput = {
+    id?: SortOrder
+    order?: SortOrder
+    status?: SortOrder
+    menuId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type RoleMenuRoleIdMenuIdCompoundUniqueInput = {
+    roleId: number
+    menuId: number
+  }
+
+  export type RoleMenuCountOrderByAggregateInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoleMenuAvgOrderByAggregateInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+  }
+
+  export type RoleMenuMaxOrderByAggregateInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoleMenuMinOrderByAggregateInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoleMenuSumOrderByAggregateInput = {
+    roleId?: SortOrder
+    menuId?: SortOrder
+  }
+
   export type UserRoleCreateNestedManyWithoutUserInput = {
     create?: XOR<UserRoleCreateWithoutUserInput, UserRoleUncheckedCreateWithoutUserInput> | UserRoleCreateWithoutUserInput[] | UserRoleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserRoleCreateOrConnectWithoutUserInput | UserRoleCreateOrConnectWithoutUserInput[]
@@ -10971,6 +15276,13 @@ export namespace Prisma {
     connect?: RolePolicyWhereUniqueInput | RolePolicyWhereUniqueInput[]
   }
 
+  export type RoleMenuCreateNestedManyWithoutRoleInput = {
+    create?: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput> | RoleMenuCreateWithoutRoleInput[] | RoleMenuUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutRoleInput | RoleMenuCreateOrConnectWithoutRoleInput[]
+    createMany?: RoleMenuCreateManyRoleInputEnvelope
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+  }
+
   export type UserRoleUncheckedCreateNestedManyWithoutRoleInput = {
     create?: XOR<UserRoleCreateWithoutRoleInput, UserRoleUncheckedCreateWithoutRoleInput> | UserRoleCreateWithoutRoleInput[] | UserRoleUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: UserRoleCreateOrConnectWithoutRoleInput | UserRoleCreateOrConnectWithoutRoleInput[]
@@ -10990,6 +15302,13 @@ export namespace Prisma {
     connectOrCreate?: RolePolicyCreateOrConnectWithoutRoleInput | RolePolicyCreateOrConnectWithoutRoleInput[]
     createMany?: RolePolicyCreateManyRoleInputEnvelope
     connect?: RolePolicyWhereUniqueInput | RolePolicyWhereUniqueInput[]
+  }
+
+  export type RoleMenuUncheckedCreateNestedManyWithoutRoleInput = {
+    create?: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput> | RoleMenuCreateWithoutRoleInput[] | RoleMenuUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutRoleInput | RoleMenuCreateOrConnectWithoutRoleInput[]
+    createMany?: RoleMenuCreateManyRoleInputEnvelope
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -11038,6 +15357,20 @@ export namespace Prisma {
     deleteMany?: RolePolicyScalarWhereInput | RolePolicyScalarWhereInput[]
   }
 
+  export type RoleMenuUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput> | RoleMenuCreateWithoutRoleInput[] | RoleMenuUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutRoleInput | RoleMenuCreateOrConnectWithoutRoleInput[]
+    upsert?: RoleMenuUpsertWithWhereUniqueWithoutRoleInput | RoleMenuUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: RoleMenuCreateManyRoleInputEnvelope
+    set?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    disconnect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    delete?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    update?: RoleMenuUpdateWithWhereUniqueWithoutRoleInput | RoleMenuUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: RoleMenuUpdateManyWithWhereWithoutRoleInput | RoleMenuUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
+  }
+
   export type UserRoleUncheckedUpdateManyWithoutRoleNestedInput = {
     create?: XOR<UserRoleCreateWithoutRoleInput, UserRoleUncheckedCreateWithoutRoleInput> | UserRoleCreateWithoutRoleInput[] | UserRoleUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: UserRoleCreateOrConnectWithoutRoleInput | UserRoleCreateOrConnectWithoutRoleInput[]
@@ -11078,6 +15411,20 @@ export namespace Prisma {
     update?: RolePolicyUpdateWithWhereUniqueWithoutRoleInput | RolePolicyUpdateWithWhereUniqueWithoutRoleInput[]
     updateMany?: RolePolicyUpdateManyWithWhereWithoutRoleInput | RolePolicyUpdateManyWithWhereWithoutRoleInput[]
     deleteMany?: RolePolicyScalarWhereInput | RolePolicyScalarWhereInput[]
+  }
+
+  export type RoleMenuUncheckedUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput> | RoleMenuCreateWithoutRoleInput[] | RoleMenuUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutRoleInput | RoleMenuCreateOrConnectWithoutRoleInput[]
+    upsert?: RoleMenuUpsertWithWhereUniqueWithoutRoleInput | RoleMenuUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: RoleMenuCreateManyRoleInputEnvelope
+    set?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    disconnect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    delete?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    update?: RoleMenuUpdateWithWhereUniqueWithoutRoleInput | RoleMenuUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: RoleMenuUpdateManyWithWhereWithoutRoleInput | RoleMenuUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
   }
 
   export type RoleCreateNestedOneWithoutUsersInput = {
@@ -11360,6 +15707,192 @@ export namespace Prisma {
     update?: XOR<XOR<PolicyUpdateToOneWithWhereWithoutPermissionPolicyInput, PolicyUpdateWithoutPermissionPolicyInput>, PolicyUncheckedUpdateWithoutPermissionPolicyInput>
   }
 
+  export type MenuMetaCreateNestedOneWithoutMenuInput = {
+    create?: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+    connectOrCreate?: MenuMetaCreateOrConnectWithoutMenuInput
+    connect?: MenuMetaWhereUniqueInput
+  }
+
+  export type MenuCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<MenuCreateWithoutChildrenInput, MenuUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutChildrenInput
+    connect?: MenuWhereUniqueInput
+  }
+
+  export type MenuCreateNestedManyWithoutParentInput = {
+    create?: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput> | MenuCreateWithoutParentInput[] | MenuUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: MenuCreateOrConnectWithoutParentInput | MenuCreateOrConnectWithoutParentInput[]
+    createMany?: MenuCreateManyParentInputEnvelope
+    connect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+  }
+
+  export type RoleMenuCreateNestedManyWithoutMenuInput = {
+    create?: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput> | RoleMenuCreateWithoutMenuInput[] | RoleMenuUncheckedCreateWithoutMenuInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutMenuInput | RoleMenuCreateOrConnectWithoutMenuInput[]
+    createMany?: RoleMenuCreateManyMenuInputEnvelope
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+  }
+
+  export type MenuMetaUncheckedCreateNestedOneWithoutMenuInput = {
+    create?: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+    connectOrCreate?: MenuMetaCreateOrConnectWithoutMenuInput
+    connect?: MenuMetaWhereUniqueInput
+  }
+
+  export type MenuUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput> | MenuCreateWithoutParentInput[] | MenuUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: MenuCreateOrConnectWithoutParentInput | MenuCreateOrConnectWithoutParentInput[]
+    createMany?: MenuCreateManyParentInputEnvelope
+    connect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+  }
+
+  export type RoleMenuUncheckedCreateNestedManyWithoutMenuInput = {
+    create?: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput> | RoleMenuCreateWithoutMenuInput[] | RoleMenuUncheckedCreateWithoutMenuInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutMenuInput | RoleMenuCreateOrConnectWithoutMenuInput[]
+    createMany?: RoleMenuCreateManyMenuInputEnvelope
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type MenuMetaUpdateOneWithoutMenuNestedInput = {
+    create?: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+    connectOrCreate?: MenuMetaCreateOrConnectWithoutMenuInput
+    upsert?: MenuMetaUpsertWithoutMenuInput
+    disconnect?: MenuMetaWhereInput | boolean
+    delete?: MenuMetaWhereInput | boolean
+    connect?: MenuMetaWhereUniqueInput
+    update?: XOR<XOR<MenuMetaUpdateToOneWithWhereWithoutMenuInput, MenuMetaUpdateWithoutMenuInput>, MenuMetaUncheckedUpdateWithoutMenuInput>
+  }
+
+  export type MenuUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<MenuCreateWithoutChildrenInput, MenuUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutChildrenInput
+    upsert?: MenuUpsertWithoutChildrenInput
+    disconnect?: MenuWhereInput | boolean
+    delete?: MenuWhereInput | boolean
+    connect?: MenuWhereUniqueInput
+    update?: XOR<XOR<MenuUpdateToOneWithWhereWithoutChildrenInput, MenuUpdateWithoutChildrenInput>, MenuUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type MenuUpdateManyWithoutParentNestedInput = {
+    create?: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput> | MenuCreateWithoutParentInput[] | MenuUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: MenuCreateOrConnectWithoutParentInput | MenuCreateOrConnectWithoutParentInput[]
+    upsert?: MenuUpsertWithWhereUniqueWithoutParentInput | MenuUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: MenuCreateManyParentInputEnvelope
+    set?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    disconnect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    delete?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    connect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    update?: MenuUpdateWithWhereUniqueWithoutParentInput | MenuUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: MenuUpdateManyWithWhereWithoutParentInput | MenuUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: MenuScalarWhereInput | MenuScalarWhereInput[]
+  }
+
+  export type RoleMenuUpdateManyWithoutMenuNestedInput = {
+    create?: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput> | RoleMenuCreateWithoutMenuInput[] | RoleMenuUncheckedCreateWithoutMenuInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutMenuInput | RoleMenuCreateOrConnectWithoutMenuInput[]
+    upsert?: RoleMenuUpsertWithWhereUniqueWithoutMenuInput | RoleMenuUpsertWithWhereUniqueWithoutMenuInput[]
+    createMany?: RoleMenuCreateManyMenuInputEnvelope
+    set?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    disconnect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    delete?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    update?: RoleMenuUpdateWithWhereUniqueWithoutMenuInput | RoleMenuUpdateWithWhereUniqueWithoutMenuInput[]
+    updateMany?: RoleMenuUpdateManyWithWhereWithoutMenuInput | RoleMenuUpdateManyWithWhereWithoutMenuInput[]
+    deleteMany?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
+  }
+
+  export type MenuMetaUncheckedUpdateOneWithoutMenuNestedInput = {
+    create?: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+    connectOrCreate?: MenuMetaCreateOrConnectWithoutMenuInput
+    upsert?: MenuMetaUpsertWithoutMenuInput
+    disconnect?: MenuMetaWhereInput | boolean
+    delete?: MenuMetaWhereInput | boolean
+    connect?: MenuMetaWhereUniqueInput
+    update?: XOR<XOR<MenuMetaUpdateToOneWithWhereWithoutMenuInput, MenuMetaUpdateWithoutMenuInput>, MenuMetaUncheckedUpdateWithoutMenuInput>
+  }
+
+  export type MenuUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput> | MenuCreateWithoutParentInput[] | MenuUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: MenuCreateOrConnectWithoutParentInput | MenuCreateOrConnectWithoutParentInput[]
+    upsert?: MenuUpsertWithWhereUniqueWithoutParentInput | MenuUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: MenuCreateManyParentInputEnvelope
+    set?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    disconnect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    delete?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    connect?: MenuWhereUniqueInput | MenuWhereUniqueInput[]
+    update?: MenuUpdateWithWhereUniqueWithoutParentInput | MenuUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: MenuUpdateManyWithWhereWithoutParentInput | MenuUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: MenuScalarWhereInput | MenuScalarWhereInput[]
+  }
+
+  export type RoleMenuUncheckedUpdateManyWithoutMenuNestedInput = {
+    create?: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput> | RoleMenuCreateWithoutMenuInput[] | RoleMenuUncheckedCreateWithoutMenuInput[]
+    connectOrCreate?: RoleMenuCreateOrConnectWithoutMenuInput | RoleMenuCreateOrConnectWithoutMenuInput[]
+    upsert?: RoleMenuUpsertWithWhereUniqueWithoutMenuInput | RoleMenuUpsertWithWhereUniqueWithoutMenuInput[]
+    createMany?: RoleMenuCreateManyMenuInputEnvelope
+    set?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    disconnect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    delete?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    connect?: RoleMenuWhereUniqueInput | RoleMenuWhereUniqueInput[]
+    update?: RoleMenuUpdateWithWhereUniqueWithoutMenuInput | RoleMenuUpdateWithWhereUniqueWithoutMenuInput[]
+    updateMany?: RoleMenuUpdateManyWithWhereWithoutMenuInput | RoleMenuUpdateManyWithWhereWithoutMenuInput[]
+    deleteMany?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
+  }
+
+  export type MenuCreateNestedOneWithoutMetaInput = {
+    create?: XOR<MenuCreateWithoutMetaInput, MenuUncheckedCreateWithoutMetaInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutMetaInput
+    connect?: MenuWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type MenuUpdateOneRequiredWithoutMetaNestedInput = {
+    create?: XOR<MenuCreateWithoutMetaInput, MenuUncheckedCreateWithoutMetaInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutMetaInput
+    upsert?: MenuUpsertWithoutMetaInput
+    connect?: MenuWhereUniqueInput
+    update?: XOR<XOR<MenuUpdateToOneWithWhereWithoutMetaInput, MenuUpdateWithoutMetaInput>, MenuUncheckedUpdateWithoutMetaInput>
+  }
+
+  export type RoleCreateNestedOneWithoutRoleMenuInput = {
+    create?: XOR<RoleCreateWithoutRoleMenuInput, RoleUncheckedCreateWithoutRoleMenuInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutRoleMenuInput
+    connect?: RoleWhereUniqueInput
+  }
+
+  export type MenuCreateNestedOneWithoutRoleMenusInput = {
+    create?: XOR<MenuCreateWithoutRoleMenusInput, MenuUncheckedCreateWithoutRoleMenusInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutRoleMenusInput
+    connect?: MenuWhereUniqueInput
+  }
+
+  export type RoleUpdateOneRequiredWithoutRoleMenuNestedInput = {
+    create?: XOR<RoleCreateWithoutRoleMenuInput, RoleUncheckedCreateWithoutRoleMenuInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutRoleMenuInput
+    upsert?: RoleUpsertWithoutRoleMenuInput
+    connect?: RoleWhereUniqueInput
+    update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutRoleMenuInput, RoleUpdateWithoutRoleMenuInput>, RoleUncheckedUpdateWithoutRoleMenuInput>
+  }
+
+  export type MenuUpdateOneRequiredWithoutRoleMenusNestedInput = {
+    create?: XOR<MenuCreateWithoutRoleMenusInput, MenuUncheckedCreateWithoutRoleMenusInput>
+    connectOrCreate?: MenuCreateOrConnectWithoutRoleMenusInput
+    upsert?: MenuUpsertWithoutRoleMenusInput
+    connect?: MenuWhereUniqueInput
+    update?: XOR<XOR<MenuUpdateToOneWithWhereWithoutRoleMenusInput, MenuUpdateWithoutRoleMenusInput>, MenuUncheckedUpdateWithoutRoleMenusInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11518,6 +16051,46 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type UserRoleCreateWithoutUserInput = {
     role: RoleCreateNestedOneWithoutUsersInput
   }
@@ -11614,6 +16187,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RoleMenuCreateWithoutRoleInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    menu: MenuCreateNestedOneWithoutRoleMenusInput
+  }
+
+  export type RoleMenuUncheckedCreateWithoutRoleInput = {
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoleMenuCreateOrConnectWithoutRoleInput = {
+    where: RoleMenuWhereUniqueInput
+    create: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput>
+  }
+
+  export type RoleMenuCreateManyRoleInputEnvelope = {
+    data: RoleMenuCreateManyRoleInput | RoleMenuCreateManyRoleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserRoleUpsertWithWhereUniqueWithoutRoleInput = {
     where: UserRoleWhereUniqueInput
     update: XOR<UserRoleUpdateWithoutRoleInput, UserRoleUncheckedUpdateWithoutRoleInput>
@@ -11678,11 +16273,38 @@ export namespace Prisma {
     policyId?: IntFilter<"RolePolicy"> | number
   }
 
+  export type RoleMenuUpsertWithWhereUniqueWithoutRoleInput = {
+    where: RoleMenuWhereUniqueInput
+    update: XOR<RoleMenuUpdateWithoutRoleInput, RoleMenuUncheckedUpdateWithoutRoleInput>
+    create: XOR<RoleMenuCreateWithoutRoleInput, RoleMenuUncheckedCreateWithoutRoleInput>
+  }
+
+  export type RoleMenuUpdateWithWhereUniqueWithoutRoleInput = {
+    where: RoleMenuWhereUniqueInput
+    data: XOR<RoleMenuUpdateWithoutRoleInput, RoleMenuUncheckedUpdateWithoutRoleInput>
+  }
+
+  export type RoleMenuUpdateManyWithWhereWithoutRoleInput = {
+    where: RoleMenuScalarWhereInput
+    data: XOR<RoleMenuUpdateManyMutationInput, RoleMenuUncheckedUpdateManyWithoutRoleInput>
+  }
+
+  export type RoleMenuScalarWhereInput = {
+    AND?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
+    OR?: RoleMenuScalarWhereInput[]
+    NOT?: RoleMenuScalarWhereInput | RoleMenuScalarWhereInput[]
+    roleId?: IntFilter<"RoleMenu"> | number
+    menuId?: IntFilter<"RoleMenu"> | number
+    createdAt?: DateTimeFilter<"RoleMenu"> | Date | string
+    updatedAt?: DateTimeFilter<"RoleMenu"> | Date | string
+  }
+
   export type RoleCreateWithoutUsersInput = {
     name: string
     description?: string | null
     RolePermissions?: RolePermissionsCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateWithoutUsersInput = {
@@ -11691,6 +16313,7 @@ export namespace Prisma {
     description?: string | null
     RolePermissions?: RolePermissionsUncheckedCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyUncheckedCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleCreateOrConnectWithoutUsersInput = {
@@ -11734,6 +16357,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     RolePermissions?: RolePermissionsUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutUsersInput = {
@@ -11742,6 +16366,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     RolePermissions?: RolePermissionsUncheckedUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUncheckedUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type UserUpsertWithoutUserRoleInput = {
@@ -11851,6 +16476,7 @@ export namespace Prisma {
     description?: string | null
     users?: UserRoleCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateWithoutRolePermissionsInput = {
@@ -11859,6 +16485,7 @@ export namespace Prisma {
     description?: string | null
     users?: UserRoleUncheckedCreateNestedManyWithoutRoleInput
     RolePolicy?: RolePolicyUncheckedCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleCreateOrConnectWithoutRolePermissionsInput = {
@@ -11902,6 +16529,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     users?: UserRoleUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutRolePermissionsInput = {
@@ -11910,6 +16538,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput
     RolePolicy?: RolePolicyUncheckedUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type PermissionUpsertWithoutRolePermissionsInput = {
@@ -12011,6 +16640,7 @@ export namespace Prisma {
     description?: string | null
     users?: UserRoleCreateNestedManyWithoutRoleInput
     RolePermissions?: RolePermissionsCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateWithoutRolePolicyInput = {
@@ -12019,6 +16649,7 @@ export namespace Prisma {
     description?: string | null
     users?: UserRoleUncheckedCreateNestedManyWithoutRoleInput
     RolePermissions?: RolePermissionsUncheckedCreateNestedManyWithoutRoleInput
+    RoleMenu?: RoleMenuUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleCreateOrConnectWithoutRolePolicyInput = {
@@ -12072,6 +16703,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     users?: UserRoleUpdateManyWithoutRoleNestedInput
     RolePermissions?: RolePermissionsUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutRolePolicyInput = {
@@ -12080,6 +16712,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput
     RolePermissions?: RolePermissionsUncheckedUpdateManyWithoutRoleNestedInput
+    RoleMenu?: RoleMenuUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type PolicyUpsertWithoutRolePolicyInput = {
@@ -12230,6 +16863,498 @@ export namespace Prisma {
     RolePolicy?: RolePolicyUncheckedUpdateManyWithoutPolicyNestedInput
   }
 
+  export type MenuMetaCreateWithoutMenuInput = {
+    title?: string | null
+    layout?: string | null
+    order?: number | null
+    hidden?: boolean
+    disabled?: boolean
+    icon?: string | null
+    status?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuMetaUncheckedCreateWithoutMenuInput = {
+    id?: number
+    title?: string | null
+    layout?: string | null
+    order?: number | null
+    hidden?: boolean
+    disabled?: boolean
+    icon?: string | null
+    status?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuMetaCreateOrConnectWithoutMenuInput = {
+    where: MenuMetaWhereUniqueInput
+    create: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+  }
+
+  export type MenuCreateWithoutChildrenInput = {
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaCreateNestedOneWithoutMenuInput
+    parent?: MenuCreateNestedOneWithoutChildrenInput
+    roleMenus?: RoleMenuCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuUncheckedCreateWithoutChildrenInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    parentId?: number | null
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaUncheckedCreateNestedOneWithoutMenuInput
+    roleMenus?: RoleMenuUncheckedCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuCreateOrConnectWithoutChildrenInput = {
+    where: MenuWhereUniqueInput
+    create: XOR<MenuCreateWithoutChildrenInput, MenuUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type MenuCreateWithoutParentInput = {
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaCreateNestedOneWithoutMenuInput
+    children?: MenuCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuUncheckedCreateWithoutParentInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaUncheckedCreateNestedOneWithoutMenuInput
+    children?: MenuUncheckedCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuUncheckedCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuCreateOrConnectWithoutParentInput = {
+    where: MenuWhereUniqueInput
+    create: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput>
+  }
+
+  export type MenuCreateManyParentInputEnvelope = {
+    data: MenuCreateManyParentInput | MenuCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RoleMenuCreateWithoutMenuInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: RoleCreateNestedOneWithoutRoleMenuInput
+  }
+
+  export type RoleMenuUncheckedCreateWithoutMenuInput = {
+    roleId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoleMenuCreateOrConnectWithoutMenuInput = {
+    where: RoleMenuWhereUniqueInput
+    create: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput>
+  }
+
+  export type RoleMenuCreateManyMenuInputEnvelope = {
+    data: RoleMenuCreateManyMenuInput | RoleMenuCreateManyMenuInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MenuMetaUpsertWithoutMenuInput = {
+    update: XOR<MenuMetaUpdateWithoutMenuInput, MenuMetaUncheckedUpdateWithoutMenuInput>
+    create: XOR<MenuMetaCreateWithoutMenuInput, MenuMetaUncheckedCreateWithoutMenuInput>
+    where?: MenuMetaWhereInput
+  }
+
+  export type MenuMetaUpdateToOneWithWhereWithoutMenuInput = {
+    where?: MenuMetaWhereInput
+    data: XOR<MenuMetaUpdateWithoutMenuInput, MenuMetaUncheckedUpdateWithoutMenuInput>
+  }
+
+  export type MenuMetaUpdateWithoutMenuInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuMetaUncheckedUpdateWithoutMenuInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    hidden?: BoolFieldUpdateOperationsInput | boolean
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MenuUpsertWithoutChildrenInput = {
+    update: XOR<MenuUpdateWithoutChildrenInput, MenuUncheckedUpdateWithoutChildrenInput>
+    create: XOR<MenuCreateWithoutChildrenInput, MenuUncheckedCreateWithoutChildrenInput>
+    where?: MenuWhereInput
+  }
+
+  export type MenuUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: MenuWhereInput
+    data: XOR<MenuUpdateWithoutChildrenInput, MenuUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type MenuUpdateWithoutChildrenInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUpdateOneWithoutMenuNestedInput
+    parent?: MenuUpdateOneWithoutChildrenNestedInput
+    roleMenus?: RoleMenuUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUncheckedUpdateWithoutChildrenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUncheckedUpdateOneWithoutMenuNestedInput
+    roleMenus?: RoleMenuUncheckedUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUpsertWithWhereUniqueWithoutParentInput = {
+    where: MenuWhereUniqueInput
+    update: XOR<MenuUpdateWithoutParentInput, MenuUncheckedUpdateWithoutParentInput>
+    create: XOR<MenuCreateWithoutParentInput, MenuUncheckedCreateWithoutParentInput>
+  }
+
+  export type MenuUpdateWithWhereUniqueWithoutParentInput = {
+    where: MenuWhereUniqueInput
+    data: XOR<MenuUpdateWithoutParentInput, MenuUncheckedUpdateWithoutParentInput>
+  }
+
+  export type MenuUpdateManyWithWhereWithoutParentInput = {
+    where: MenuScalarWhereInput
+    data: XOR<MenuUpdateManyMutationInput, MenuUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type MenuScalarWhereInput = {
+    AND?: MenuScalarWhereInput | MenuScalarWhereInput[]
+    OR?: MenuScalarWhereInput[]
+    NOT?: MenuScalarWhereInput | MenuScalarWhereInput[]
+    id?: IntFilter<"Menu"> | number
+    name?: StringFilter<"Menu"> | string
+    path?: StringFilter<"Menu"> | string
+    label?: StringFilter<"Menu"> | string
+    component?: StringNullableFilter<"Menu"> | string | null
+    redirect?: StringNullableFilter<"Menu"> | string | null
+    fullPath?: StringNullableFilter<"Menu"> | string | null
+    alias?: StringNullableFilter<"Menu"> | string | null
+    status?: IntFilter<"Menu"> | number
+    parentId?: IntNullableFilter<"Menu"> | number | null
+    metaId?: IntNullableFilter<"Menu"> | number | null
+    createdAt?: DateTimeFilter<"Menu"> | Date | string
+    updatedAt?: DateTimeFilter<"Menu"> | Date | string
+  }
+
+  export type RoleMenuUpsertWithWhereUniqueWithoutMenuInput = {
+    where: RoleMenuWhereUniqueInput
+    update: XOR<RoleMenuUpdateWithoutMenuInput, RoleMenuUncheckedUpdateWithoutMenuInput>
+    create: XOR<RoleMenuCreateWithoutMenuInput, RoleMenuUncheckedCreateWithoutMenuInput>
+  }
+
+  export type RoleMenuUpdateWithWhereUniqueWithoutMenuInput = {
+    where: RoleMenuWhereUniqueInput
+    data: XOR<RoleMenuUpdateWithoutMenuInput, RoleMenuUncheckedUpdateWithoutMenuInput>
+  }
+
+  export type RoleMenuUpdateManyWithWhereWithoutMenuInput = {
+    where: RoleMenuScalarWhereInput
+    data: XOR<RoleMenuUpdateManyMutationInput, RoleMenuUncheckedUpdateManyWithoutMenuInput>
+  }
+
+  export type MenuCreateWithoutMetaInput = {
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: MenuCreateNestedOneWithoutChildrenInput
+    children?: MenuCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuUncheckedCreateWithoutMetaInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    parentId?: number | null
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: MenuUncheckedCreateNestedManyWithoutParentInput
+    roleMenus?: RoleMenuUncheckedCreateNestedManyWithoutMenuInput
+  }
+
+  export type MenuCreateOrConnectWithoutMetaInput = {
+    where: MenuWhereUniqueInput
+    create: XOR<MenuCreateWithoutMetaInput, MenuUncheckedCreateWithoutMetaInput>
+  }
+
+  export type MenuUpsertWithoutMetaInput = {
+    update: XOR<MenuUpdateWithoutMetaInput, MenuUncheckedUpdateWithoutMetaInput>
+    create: XOR<MenuCreateWithoutMetaInput, MenuUncheckedCreateWithoutMetaInput>
+    where?: MenuWhereInput
+  }
+
+  export type MenuUpdateToOneWithWhereWithoutMetaInput = {
+    where?: MenuWhereInput
+    data: XOR<MenuUpdateWithoutMetaInput, MenuUncheckedUpdateWithoutMetaInput>
+  }
+
+  export type MenuUpdateWithoutMetaInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: MenuUpdateOneWithoutChildrenNestedInput
+    children?: MenuUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUncheckedUpdateWithoutMetaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: MenuUncheckedUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUncheckedUpdateManyWithoutMenuNestedInput
+  }
+
+  export type RoleCreateWithoutRoleMenuInput = {
+    name: string
+    description?: string | null
+    users?: UserRoleCreateNestedManyWithoutRoleInput
+    RolePermissions?: RolePermissionsCreateNestedManyWithoutRoleInput
+    RolePolicy?: RolePolicyCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleUncheckedCreateWithoutRoleMenuInput = {
+    id?: number
+    name: string
+    description?: string | null
+    users?: UserRoleUncheckedCreateNestedManyWithoutRoleInput
+    RolePermissions?: RolePermissionsUncheckedCreateNestedManyWithoutRoleInput
+    RolePolicy?: RolePolicyUncheckedCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleCreateOrConnectWithoutRoleMenuInput = {
+    where: RoleWhereUniqueInput
+    create: XOR<RoleCreateWithoutRoleMenuInput, RoleUncheckedCreateWithoutRoleMenuInput>
+  }
+
+  export type MenuCreateWithoutRoleMenusInput = {
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaCreateNestedOneWithoutMenuInput
+    parent?: MenuCreateNestedOneWithoutChildrenInput
+    children?: MenuCreateNestedManyWithoutParentInput
+  }
+
+  export type MenuUncheckedCreateWithoutRoleMenusInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    parentId?: number | null
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    meta?: MenuMetaUncheckedCreateNestedOneWithoutMenuInput
+    children?: MenuUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type MenuCreateOrConnectWithoutRoleMenusInput = {
+    where: MenuWhereUniqueInput
+    create: XOR<MenuCreateWithoutRoleMenusInput, MenuUncheckedCreateWithoutRoleMenusInput>
+  }
+
+  export type RoleUpsertWithoutRoleMenuInput = {
+    update: XOR<RoleUpdateWithoutRoleMenuInput, RoleUncheckedUpdateWithoutRoleMenuInput>
+    create: XOR<RoleCreateWithoutRoleMenuInput, RoleUncheckedCreateWithoutRoleMenuInput>
+    where?: RoleWhereInput
+  }
+
+  export type RoleUpdateToOneWithWhereWithoutRoleMenuInput = {
+    where?: RoleWhereInput
+    data: XOR<RoleUpdateWithoutRoleMenuInput, RoleUncheckedUpdateWithoutRoleMenuInput>
+  }
+
+  export type RoleUpdateWithoutRoleMenuInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    users?: UserRoleUpdateManyWithoutRoleNestedInput
+    RolePermissions?: RolePermissionsUpdateManyWithoutRoleNestedInput
+    RolePolicy?: RolePolicyUpdateManyWithoutRoleNestedInput
+  }
+
+  export type RoleUncheckedUpdateWithoutRoleMenuInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput
+    RolePermissions?: RolePermissionsUncheckedUpdateManyWithoutRoleNestedInput
+    RolePolicy?: RolePolicyUncheckedUpdateManyWithoutRoleNestedInput
+  }
+
+  export type MenuUpsertWithoutRoleMenusInput = {
+    update: XOR<MenuUpdateWithoutRoleMenusInput, MenuUncheckedUpdateWithoutRoleMenusInput>
+    create: XOR<MenuCreateWithoutRoleMenusInput, MenuUncheckedCreateWithoutRoleMenusInput>
+    where?: MenuWhereInput
+  }
+
+  export type MenuUpdateToOneWithWhereWithoutRoleMenusInput = {
+    where?: MenuWhereInput
+    data: XOR<MenuUpdateWithoutRoleMenusInput, MenuUncheckedUpdateWithoutRoleMenusInput>
+  }
+
+  export type MenuUpdateWithoutRoleMenusInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUpdateOneWithoutMenuNestedInput
+    parent?: MenuUpdateOneWithoutChildrenNestedInput
+    children?: MenuUpdateManyWithoutParentNestedInput
+  }
+
+  export type MenuUncheckedUpdateWithoutRoleMenusInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUncheckedUpdateOneWithoutMenuNestedInput
+    children?: MenuUncheckedUpdateManyWithoutParentNestedInput
+  }
+
   export type UserRoleCreateManyUserInput = {
     roleId: number
   }
@@ -12256,6 +17381,12 @@ export namespace Prisma {
 
   export type RolePolicyCreateManyRoleInput = {
     policyId: number
+  }
+
+  export type RoleMenuCreateManyRoleInput = {
+    menuId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserRoleUpdateWithoutRoleInput = {
@@ -12292,6 +17423,24 @@ export namespace Prisma {
 
   export type RolePolicyUncheckedUpdateManyWithoutRoleInput = {
     policyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type RoleMenuUpdateWithoutRoleInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menu?: MenuUpdateOneRequiredWithoutRoleMenusNestedInput
+  }
+
+  export type RoleMenuUncheckedUpdateWithoutRoleInput = {
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuUncheckedUpdateManyWithoutRoleInput = {
+    menuId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RolePermissionsCreateManyPermissionInput = {
@@ -12358,6 +17507,95 @@ export namespace Prisma {
     permissionId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type MenuCreateManyParentInput = {
+    id?: number
+    name: string
+    path: string
+    label: string
+    component?: string | null
+    redirect?: string | null
+    fullPath?: string | null
+    alias?: string | null
+    status?: number
+    metaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoleMenuCreateManyMenuInput = {
+    roleId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MenuUpdateWithoutParentInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUpdateOneWithoutMenuNestedInput
+    children?: MenuUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUncheckedUpdateWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MenuMetaUncheckedUpdateOneWithoutMenuNestedInput
+    children?: MenuUncheckedUpdateManyWithoutParentNestedInput
+    roleMenus?: RoleMenuUncheckedUpdateManyWithoutMenuNestedInput
+  }
+
+  export type MenuUncheckedUpdateManyWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    component?: NullableStringFieldUpdateOperationsInput | string | null
+    redirect?: NullableStringFieldUpdateOperationsInput | string | null
+    fullPath?: NullableStringFieldUpdateOperationsInput | string | null
+    alias?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: IntFieldUpdateOperationsInput | number
+    metaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuUpdateWithoutMenuInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneRequiredWithoutRoleMenuNestedInput
+  }
+
+  export type RoleMenuUncheckedUpdateWithoutMenuInput = {
+    roleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoleMenuUncheckedUpdateManyWithoutMenuInput = {
+    roleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -12379,6 +17617,10 @@ export namespace Prisma {
      * @deprecated Use PolicyCountOutputTypeDefaultArgs instead
      */
     export type PolicyCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PolicyCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MenuCountOutputTypeDefaultArgs instead
+     */
+    export type MenuCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MenuCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -12411,6 +17653,18 @@ export namespace Prisma {
      * @deprecated Use PermissionPolicyDefaultArgs instead
      */
     export type PermissionPolicyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PermissionPolicyDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MenuDefaultArgs instead
+     */
+    export type MenuArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MenuDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MenuMetaDefaultArgs instead
+     */
+    export type MenuMetaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MenuMetaDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use RoleMenuDefaultArgs instead
+     */
+    export type RoleMenuArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = RoleMenuDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

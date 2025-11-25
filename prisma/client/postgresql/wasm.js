@@ -175,6 +175,43 @@ exports.Prisma.PermissionPolicyScalarFieldEnum = {
   policyId: 'policyId'
 };
 
+exports.Prisma.MenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  path: 'path',
+  label: 'label',
+  component: 'component',
+  redirect: 'redirect',
+  fullPath: 'fullPath',
+  alias: 'alias',
+  status: 'status',
+  parentId: 'parentId',
+  metaId: 'metaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MenuMetaScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  layout: 'layout',
+  order: 'order',
+  hidden: 'hidden',
+  disabled: 'disabled',
+  icon: 'icon',
+  status: 'status',
+  menuId: 'menuId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RoleMenuScalarFieldEnum = {
+  roleId: 'roleId',
+  menuId: 'menuId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -210,7 +247,10 @@ exports.Prisma.ModelName = {
   RolePermissions: 'RolePermissions',
   Policy: 'Policy',
   RolePolicy: 'RolePolicy',
-  PermissionPolicy: 'PermissionPolicy'
+  PermissionPolicy: 'PermissionPolicy',
+  Menu: 'Menu',
+  MenuMeta: 'MenuMeta',
+  RoleMenu: 'RoleMenu'
 };
 
 /**
