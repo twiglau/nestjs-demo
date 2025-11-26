@@ -152,11 +152,124 @@ export class MenuService {
     };
   }
 
+  findTree(skip: number, limit: number, args: any = {}) {
+    const includeArg = {
+      meta: true,
+      children: {
+        include: {
+          meta: true,
+          children: true,
+        },
+      },
+      ...args,
+    };
+    let pagination: any = {
+      skip,
+      take: limit,
+    };
+    if (limit === -1) {
+      pagination = {};
+    }
+    return this.prismaClient.menu.findMany({
+      where: {
+        parentId: null,
+      },
+      ...pagination,
+      include: {
+        ...includeArg,
+      },
+    });
+  }
+
   findOne(id: number) {
-    return `This action returns a #${id} menu`;
+    return this.prismaClient.menu.findUnique({
+      where: { id: +id },
+      include: {
+        meta: true,
+        children: {
+          include: {
+            meta: true,
+            children: true,
+          },
+        },
+      },
+    });
+  }
+  findAllByIds(ids: number[]) {
+    return this.prismaClient.menu.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      include: {
+        children: true,
+        parent: true,
+      },
+    });
   }
 
   update(id: number, updateMenuDto: UpdateMenuDto) {
-    return `This action updates a #${id} menu`;
+    const { children = [], meta, ...restData } = updateMenuDto;
+    return this.prismaClient.$transaction(
+      async (prismaClient: PrismaClient) => {
+        // 先更新父级
+        const data = await prismaClient.menu.update({
+          where: { id: +id },
+          data: {
+            ...restData,
+          } as any,
+        });
+
+        if (meta) {
+          await prismaClient.menuMeta.upsert({
+            where: { menuId: +id },
+            create: { ...meta, menuId: +id },
+            update: meta,
+          });
+        }
+
+        // 是否有children
+        if (children?.length > 0) {
+          // 获取旧子菜单 ids
+          const menuIds = (await this._connectMenuIds(+id)).filter(
+            (o) => o !== id,
+          );
+          // 删除旧子菜单 meta 数据
+          await prismaClient.menuMeta.deleteMany({
+            where: {
+              menuId: {
+                in: menuIds,
+              },
+            },
+          });
+          // 删除旧的子菜单
+          await prismaClient.menu.deleteMany({
+            where: {
+              parentId: data.id,
+            },
+          });
+          // 重新创建新的子菜单
+          await Promise.all(
+            children.map(async (child) => this._createNested(child, data.id)),
+          );
+        }
+
+        return prismaClient.menu.findUnique({
+          where: {
+            id: data.id,
+          },
+          include: {
+            meta: true,
+            children: {
+              include: {
+                meta: true,
+                children: true,
+              },
+            },
+          },
+        });
+      },
+    );
   }
 }
