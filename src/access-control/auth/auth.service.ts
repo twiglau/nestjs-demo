@@ -1,5 +1,6 @@
 import { UserRepository } from '@/user/user.repository';
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
+import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import * as argon2 from 'argon2';
@@ -9,6 +10,7 @@ export class AuthService {
   constructor(
     private userRepository: UserRepository,
     private jwt: JwtService,
+    @Inject(CACHE_MANAGER) private cacheManger: Cache,
   ) {}
 
   async signin(username: string, password: string) {

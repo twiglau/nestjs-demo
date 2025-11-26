@@ -69,6 +69,7 @@ async function bootstrap() {
     }),
   );
 
+  // 为了在使用class-validator的DTO类中也可以注入nestjs容器的依赖
   // 全局注入 Repository，可以让自定义校验器支持依赖注入
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   // 全局拦截器
