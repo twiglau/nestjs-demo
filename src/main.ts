@@ -8,37 +8,47 @@ import {
   VERSION_NEUTRAL,
   VersioningType,
 } from '@nestjs/common';
+import { useContainer } from 'class-validator';
+import { TransformDatabaseResponseInterceptor } from './common/interceptors/transform.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT', 3000);
+  const httpAdapterHost = app.get(HttpAdapterHost);
+
+  const port = configService.get<number>('APP_PORT', 3000);
   const cors = configService.get('APP_CORS', false);
   const prefix = configService.get('APP_PREFIX', '/api');
   const versionStr = configService.get<string>('APP_VERSION');
+  const errorFilterFlag = configService.get<string>('ERROR_FILTER');
+
   let version = [versionStr];
   if (versionStr && versionStr.indexOf(',')) {
     version = versionStr.split(',');
   }
-  const errorFilterFlag = configService.get<string>('ERROR_FILTER');
-
-  // 从 winston 拉取日志
-  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
-  app.setGlobalPrefix(prefix);
-  app.enableVersioning({
-    type: VersioningType.URI,
-    defaultVersion:
-      typeof versionStr === 'undefined'
-        ? VERSION_NEUTRAL
-        : (version as string[]),
-  });
-
-  if (cors === 'true') {
-    app.enableCors();
+  if (version) {
+    // 启用版本控制
+    app.enableVersioning({
+      type: VersioningType.URI,
+      defaultVersion:
+        typeof versionStr === 'undefined'
+          ? VERSION_NEUTRAL
+          : (version as string[]),
+    });
+  }
+  if (prefix) {
+    // 设置全局前缀
+    app.setGlobalPrefix(prefix);
   }
   if (errorFilterFlag === 'true') {
-    const httpAdapter = app.get(HttpAdapterHost);
-    app.useGlobalFilters(new AllExceptionFilter(httpAdapter));
+    // ⚠️： 启用全局异常过滤器，捕获所有异常，全局异常过滤器只能有一个
+    app.useGlobalFilters(new AllExceptionFilter(httpAdapterHost));
+  }
+  // 从 winston 拉取日志
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+  // 启用跨域
+  if (cors === 'true') {
+    app.enableCors();
   }
 
   // 启用 NestJS 应用的关闭钩子 (shutdown hooks)
@@ -58,6 +68,11 @@ async function bootstrap() {
       },
     }),
   );
+
+  // 全局注入 Repository，可以让自定义校验器支持依赖注入
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  // 全局拦截器
+  app.useGlobalInterceptors(new TransformDatabaseResponseInterceptor());
 
   // 1. 全局守卫 - 无法使用 ID系统的实例
   // 无法来使用UserService - 之类的依赖注入的实例

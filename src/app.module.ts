@@ -6,7 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { AccessControlModule } from './access-control/access-control.module';
 import { ConfigurationModule } from './common/configuration/configuration.module';
-import { SharedModule } from './modules/shared/shared.module';
+import { ConditionalModule } from './conditional/conditional.module';
 
 @Module({
   imports: [
@@ -14,8 +14,8 @@ import { SharedModule } from './modules/shared/shared.module';
     LogsModule,
     DatabaseModule,
     UserModule,
+    ConditionalModule.register(),
     AccessControlModule,
-    SharedModule,
   ],
   // 获取 DI 系统中具体 class 类的实例，以及他们之间的依赖关系
   controllers: [AppController],
