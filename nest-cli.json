@@ -7,8 +7,12 @@
     "builder": "swc",
     "watchAssets": true,
     "assets": [
-      "common/mail/templates/**/*.hbs",
-      "assets/**/*"
+      "**/*.hbs",
+      "i18n/**/*",
+      {
+        "include": "i18n/**/*",
+        "watchAssets": true
+      }
     ]
   }
 }

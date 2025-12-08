@@ -10,10 +10,12 @@ import {
 } from '@nestjs/common';
 import { useContainer } from 'class-validator';
 import { TransformDatabaseResponseInterceptor } from './common/interceptors/transform.interceptor';
+import { I18nService } from 'nestjs-i18n';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+  const i18n = app.get<I18nService>(I18nService);
   const httpAdapterHost = app.get(HttpAdapterHost);
 
   const port = configService.get<number>('APP_PORT', 3000);
@@ -42,7 +44,7 @@ async function bootstrap() {
   }
   if (errorFilterFlag === 'true') {
     // ⚠️： 启用全局异常过滤器，捕获所有异常，全局异常过滤器只能有一个
-    app.useGlobalFilters(new AllExceptionFilter(httpAdapterHost));
+    app.useGlobalFilters(new AllExceptionFilter(httpAdapterHost, i18n));
   }
   // 从 winston 拉取日志
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
