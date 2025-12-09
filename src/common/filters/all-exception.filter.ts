@@ -3,6 +3,7 @@ import {
   BadRequestException,
   Catch,
   ExceptionFilter,
+  ForbiddenException,
   HttpException,
   HttpStatus,
   Logger,
@@ -51,11 +52,20 @@ export class AllExceptionFilter implements ExceptionFilter {
   }
 
   catch(exception: any, host: ArgumentsHost) {
-    console.log(exception);
+    console.log(
+      '🚀 ~ all-exception.filter.ts:56 ~ AllExceptionFilter ~ catch ~ exception:',
+      exception,
+    );
+
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
     const request: Request = ctx.getRequest();
     const response: Response = ctx.getResponse<Response>();
+
+    // TODO 处理 nestjs-i18n 验证异常  下面自定义处理
+    if (exception instanceof I18nValidationException) {
+      return this.i18nValidationExceptionFilter.catch(exception, host);
+    }
 
     let message: string = exception.message || 'Internal Server Error';
     let status: HttpStatus =
@@ -76,25 +86,70 @@ export class AllExceptionFilter implements ExceptionFilter {
       }
     } else if (exception instanceof I18nValidationException) {
       status = exception.getStatus();
-      message = exception.errors.map((err) =>
-        this.formatMessage(err, request.i18nLang!),
-      );
+      message = exception.errors
+        .map((err) => this.formatMessage(err, request.i18nLang!))
+        .join('; ');
+    } else if (exception instanceof ForbiddenException) {
+      status = HttpStatus.FORBIDDEN;
+      message = '无访问权限，请联系管理员';
+    } else if (exception.name === 'PrismaClientKnownRequestError') {
+      switch (exception.code) {
+        case 'P2002': // 唯一约束失败
+          status = HttpStatus.CONFLICT;
+          message = `字段 "${exception.meta?.target}" 已存在`;
+          break;
+
+        case 'P2025': // 数据不存在
+          status = HttpStatus.BAD_REQUEST;
+          message = '要操作数据不存在';
+          break;
+
+        case 'P2003': // 外键约束失败
+          status = HttpStatus.BAD_REQUEST;
+          message = '外键约束失败，无法操作关联数据';
+          break;
+
+        default:
+          status = HttpStatus.INTERNAL_SERVER_ERROR;
+          message = '数据库异常，请联系管理员';
+          break;
+      }
+    } else if (exception instanceof HttpException) {
+      const exceptionBody: any = exception.getResponse();
+      message = exceptionBody?.message || exceptionBody;
+      code = exceptionBody?.code || -1;
+    } else {
+      status = HttpStatus.INTERNAL_SERVER_ERROR;
+      message = exception.stack;
     }
 
     const responseBody = {
-      headers: request.headers,
+      code: -1,
+      message,
+      error: exception['name'] + ': ' + exception['message'],
+      success: false,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      // IP信息
+      ip: requestIp.getClientIp(request),
+      method: request.method,
+    };
+
+    console.log(
+      '🚀 ~ all-exception.filter.ts:138 ~ AllExceptionFilter ~ catch ~ responseBody:',
+      responseBody,
+    );
+
+    this.logger.error('[twiglau-log]', {
+      ...responseBody,
       query: request.query,
       body: request.body,
       params: request.params,
-      timestamp: new Date().toISOString(),
-      // 还可以加入一些用户信息
-      // IP信息
-      ip: requestIp.getClientIp(request),
-      exceptioin: exception['name'],
-      error: msg,
-    };
-
-    this.logger.error('[twiglau-log]', responseBody);
-    httpAdapter.reply(response, responseBody, httpStatus);
+      headers: request.headers,
+      status,
+      exception: exception,
+      code,
+    });
+    httpAdapter.reply(response, responseBody, status);
   }
 }
