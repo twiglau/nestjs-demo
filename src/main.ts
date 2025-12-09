@@ -1,16 +1,17 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { AllExceptionFilter } from './common/filters/all-exception.filter';
 import {
-  ValidationPipe,
+  INestApplication,
   VERSION_NEUTRAL,
   VersioningType,
 } from '@nestjs/common';
 import { useContainer } from 'class-validator';
 import { TransformDatabaseResponseInterceptor } from './common/interceptors/transform.interceptor';
-import { I18nService } from 'nestjs-i18n';
+import { I18nService, I18nValidationPipe } from 'nestjs-i18n';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -59,14 +60,13 @@ async function bootstrap() {
 
   // 启用全局管道
   app.useGlobalPipes(
-    new ValidationPipe({
-      // true => 移除额外的属性， false => 不移除
-      whitelist: false,
-      // 自动转换实体到 dto, 例如将字符串转换为数字
-      transform: true,
+    // ValidationPipe
+    new I18nValidationPipe({
+      transform: true, // 开启自动转换
+      whitelist: true, // 开启白名单， 只允许白名单中的字段， false => 表示不会删除 白名单之外的字段
       transformOptions: {
-        // 启用隐式转换，例如将字符串转换为数字
-        enableImplicitConversion: true,
+        enableImplicitConversion: true, // 开启隐式转换
+        enableCircularCheck: true, // 开启循环检查
       },
     }),
   );
@@ -83,6 +83,20 @@ async function bootstrap() {
   // > 在app.module.ts 中另外一种写法
   // app.useGlobalGuards();
 
+  // 启用 swagger
+  enableSwagger(app);
+
   await app.listen(port);
 }
 void bootstrap();
+
+function enableSwagger(app: INestApplication) {
+  const config = new DocumentBuilder()
+    .setTitle('[Twiglau] Swagger')
+    .setDescription('[Twiglau] API description')
+    .setVersion('1.0')
+    .build();
+
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('swagger', app, documentFactory);
+}

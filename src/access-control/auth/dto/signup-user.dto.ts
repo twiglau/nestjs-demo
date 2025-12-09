@@ -1,3 +1,4 @@
+import { ValidatorFieldUnique } from '@/common/decorators/validator-field-unique.decorator';
 import {
   IsArray,
   IsNotEmpty,
@@ -5,6 +6,7 @@ import {
   IsString,
   Length,
 } from 'class-validator';
+import { i18nValidationMessage } from 'nestjs-i18n';
 
 export class SignupDto {
   @IsNotEmpty()
@@ -12,6 +14,11 @@ export class SignupDto {
   @Length(6, 20, {
     message: (args) =>
       `用户名长度 ${args.constraints[0]} ~ ${args.constraints[1]}`,
+  })
+  @ValidatorFieldUnique('user', 'username', {
+    message: i18nValidationMessage('validation.IS_EXISTS', {
+      property: 'username ',
+    }),
   })
   username: string;
 
