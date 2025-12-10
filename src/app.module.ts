@@ -8,6 +8,8 @@ import { AccessControlModule } from './access-control/access-control.module';
 import { ConfigurationModule } from './common/configuration/configuration.module';
 import { ConditionalModule } from './conditional/conditional.module';
 
+// 特性模块 -> 业务模块
+import { FeaturesModule } from './modules/features.module';
 @Module({
   imports: [
     ConfigurationModule,
@@ -16,6 +18,7 @@ import { ConditionalModule } from './conditional/conditional.module';
     UserModule,
     ConditionalModule.register(),
     AccessControlModule,
+    FeaturesModule,
   ],
   // 获取 DI 系统中具体 class 类的实例，以及他们之间的依赖关系
   controllers: [AppController],
