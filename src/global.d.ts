@@ -13,6 +13,16 @@ declare global {
       i18nLang?: string;
     }
   }
+
+  declare interface IResList<T = any> {
+    records: T[];
+    pagination: {
+      total: number;
+      current: number;
+      size: number;
+      pages: number;
+    };
+  }
 }
 
 /*

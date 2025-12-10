@@ -142,7 +142,7 @@ export class MenuService {
     });
 
     return {
-      content: data,
+      results: data,
       pagination: {
         total: count,
         current: page,

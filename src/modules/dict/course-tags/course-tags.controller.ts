@@ -6,23 +6,29 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CourseTagsService } from './course-tags.service';
-import { CreateCourseTagDto } from './dto/create-course-tag.dto';
+import { CreateDictCourseTagDto } from './dto/create-course-tag.dto';
 import { UpdateCourseTagDto } from './dto/update-course-tag.dto';
+import { number } from 'joi';
 
 @Controller('dict/course-tags')
 export class CourseTagsController {
   constructor(private readonly courseTagsService: CourseTagsService) {}
 
   @Post()
-  create(@Body() createCourseTagDto: CreateCourseTagDto) {
+  create(@Body() createCourseTagDto: CreateDictCourseTagDto) {
     return this.courseTagsService.create(createCourseTagDto);
   }
 
   @Get()
-  findAll() {
-    return this.courseTagsService.findAll();
+  findAll(
+    @Query('page', new ParseIntPipe({ optional: true })) page: number = 1,
+    @Query('size', new ParseIntPipe({ optional: true })) size: number = 10,
+  ) {
+    return this.courseTagsService.find(page, size);
   }
 
   @Get(':id')

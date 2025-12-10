@@ -6,9 +6,11 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CourseTypesService } from './course-types.service';
-import { CreateCourseTypeDto } from './dto/create-course-type.dto';
+import { CreateDictCourseTypeDto } from './dto/create-course-type.dto';
 import { UpdateCourseTypeDto } from './dto/update-course-type.dto';
 
 @Controller('dict/course-types')
@@ -16,13 +18,16 @@ export class CourseTypesController {
   constructor(private readonly courseTypesService: CourseTypesService) {}
 
   @Post()
-  create(@Body() createCourseTypeDto: CreateCourseTypeDto) {
+  create(@Body() createCourseTypeDto: CreateDictCourseTypeDto) {
     return this.courseTypesService.create(createCourseTypeDto);
   }
 
   @Get()
-  findAll() {
-    return this.courseTypesService.findAll();
+  findAll(
+    @Query('page', new ParseIntPipe({ optional: true })) page: number = 1,
+    @Query('size', new ParseIntPipe({ optional: true })) size: number = 10,
+  ) {
+    return this.courseTypesService.find(page, size);
   }
 
   @Get(':id')
