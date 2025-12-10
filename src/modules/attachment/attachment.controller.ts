@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { AttachmentService } from './attachment.service';
 import { CreateAttachmentDto } from './dto/create-attachment.dto';
 import { UpdateAttachmentDto } from './dto/update-attachment.dto';
@@ -13,8 +23,11 @@ export class AttachmentController {
   }
 
   @Get()
-  findAll() {
-    return this.attachmentService.findAll();
+  find(
+    @Query('page', new ParseIntPipe({ optional: true })) page: number = 1,
+    @Query('size', new ParseIntPipe({ optional: true })) size: number = 10,
+  ) {
+    return this.attachmentService.find(page, size);
   }
 
   @Get(':id')
@@ -23,7 +36,10 @@ export class AttachmentController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAttachmentDto: UpdateAttachmentDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateAttachmentDto: UpdateAttachmentDto,
+  ) {
     return this.attachmentService.update(+id, updateAttachmentDto);
   }
 
