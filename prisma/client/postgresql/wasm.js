@@ -212,6 +212,191 @@ exports.Prisma.RoleMenuScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DictAttachmentAttributeScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  name: 'name',
+  desc: 'desc'
+};
+
+exports.Prisma.AttachmentAttributeScalarFieldEnum = {
+  attachmentId: 'attachmentId',
+  attributeId: 'attributeId',
+  value: 'value',
+  desc: 'desc'
+};
+
+exports.Prisma.AttachmentScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  location: 'location',
+  name: 'name',
+  ossType: 'ossType',
+  userId: 'userId',
+  status: 'status',
+  desc: 'desc',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CourseScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subTitle: 'subTitle',
+  desc: 'desc',
+  coverId: 'coverId',
+  authorId: 'authorId',
+  originPrice: 'originPrice',
+  price: 'price',
+  status: 'status',
+  counts: 'counts',
+  order: 'order',
+  detail: 'detail',
+  type: 'type'
+};
+
+exports.Prisma.CourseContentScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  title: 'title',
+  type: 'type',
+  order: 'order',
+  pid: 'pid',
+  status: 'status',
+  authorId: 'authorId'
+};
+
+exports.Prisma.ContentAttachmentScalarFieldEnum = {
+  contentId: 'contentId',
+  attachmentId: 'attachmentId'
+};
+
+exports.Prisma.DictCourseTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  typeId: 'typeId',
+  order: 'order',
+  status: 'status'
+};
+
+exports.Prisma.DictCourseTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  order: 'order',
+  status: 'status'
+};
+
+exports.Prisma.CourseTagScalarFieldEnum = {
+  courseId: 'courseId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.ContentTagScalarFieldEnum = {
+  contentId: 'contentId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  pid: 'pid',
+  userId: 'userId',
+  created: 'created',
+  hands: 'hands',
+  status: 'status',
+  isBest: 'isBest'
+};
+
+exports.Prisma.CourseCommentScalarFieldEnum = {
+  courseId: 'courseId',
+  commentId: 'commentId'
+};
+
+exports.Prisma.ContentCommentScalarFieldEnum = {
+  contentId: 'contentId',
+  commentId: 'commentId'
+};
+
+exports.Prisma.NoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  createAt: 'createAt',
+  updateAt: 'updateAt',
+  status: 'status'
+};
+
+exports.Prisma.DictPlatformScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url'
+};
+
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  userId: 'userId',
+  amount: 'amount',
+  platformId: 'platformId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GroupTransactionScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.AuditFlowScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.AuditStageScalarFieldEnum = {
+  id: 'id',
+  flowId: 'flowId',
+  name: 'name',
+  level: 'level',
+  pid: 'pid'
+};
+
+exports.Prisma.AuditRecordScalarFieldEnum = {
+  id: 'id',
+  entityId: 'entityId',
+  entityType: 'entityType',
+  stageId: 'stageId',
+  status: 'status',
+  reviewerId: 'reviewerId',
+  createdAt: 'createdAt',
+  notes: 'notes'
+};
+
+exports.Prisma.DictCouponTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  desc: 'desc'
+};
+
+exports.Prisma.CouponScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  typeId: 'typeId',
+  threshold: 'threshold',
+  discount: 'discount',
+  validUntil: 'validUntil',
+  universal: 'universal'
+};
+
+exports.Prisma.BalanceRecordScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  transactionId: 'transactionId',
+  amount: 'amount',
+  type: 'type',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -250,7 +435,30 @@ exports.Prisma.ModelName = {
   PermissionPolicy: 'PermissionPolicy',
   Menu: 'Menu',
   MenuMeta: 'MenuMeta',
-  RoleMenu: 'RoleMenu'
+  RoleMenu: 'RoleMenu',
+  DictAttachmentAttribute: 'DictAttachmentAttribute',
+  AttachmentAttribute: 'AttachmentAttribute',
+  Attachment: 'Attachment',
+  Course: 'Course',
+  CourseContent: 'CourseContent',
+  ContentAttachment: 'ContentAttachment',
+  DictCourseTag: 'DictCourseTag',
+  DictCourseType: 'DictCourseType',
+  CourseTag: 'CourseTag',
+  ContentTag: 'ContentTag',
+  Comment: 'Comment',
+  CourseComment: 'CourseComment',
+  ContentComment: 'ContentComment',
+  Note: 'Note',
+  DictPlatform: 'DictPlatform',
+  Transaction: 'Transaction',
+  GroupTransaction: 'GroupTransaction',
+  AuditFlow: 'AuditFlow',
+  AuditStage: 'AuditStage',
+  AuditRecord: 'AuditRecord',
+  DictCouponType: 'DictCouponType',
+  Coupon: 'Coupon',
+  BalanceRecord: 'BalanceRecord'
 };
 
 /**

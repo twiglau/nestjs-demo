@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DictService } from './dict.service';
-import { DictController } from './dict.controller';
+import { AttachmentAttributeModule } from './attachment-attribute/attachment-attribute.module';
+import { CourseTagsModule } from './course-tags/course-tags.module';
+import { CourseTypesModule } from './course-types/course-types.module';
 
 @Module({
-  controllers: [DictController],
-  providers: [DictService],
+  imports: [AttachmentAttributeModule, CourseTagsModule, CourseTypesModule],
+  controllers: [],
+  providers: [],
 })
 export class DictModule {}

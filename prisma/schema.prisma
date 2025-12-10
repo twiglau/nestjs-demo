@@ -174,10 +174,6 @@ model RoleMenu {
   @@map("role_menus")
 }
 
-/**
- * 业务模块
- */
-
 model DictAttachmentAttribute {
   id   Int     @id @default(autoincrement())
   type String // 资源分类
@@ -197,7 +193,7 @@ model AttachmentAttribute {
   desc         String? // 补充描述
 
   Attachment    Attachment              @relation(fields: [attachmentId], references: [id])
-  DictAttribute DictAttachmentAttribute @relation(fields: [attachmentId], references: [id])
+  DictAttribute DictAttachmentAttribute @relation(fields: [attributeId], references: [id])
 
   @@id([attachmentId, attributeId])
   @@map("attachment_attributes")
@@ -313,6 +309,7 @@ model CourseTag {
   Course Course        @relation(fields: [courseId], references: [id])
   Tag    DictCourseTag @relation(fields: [tagId], references: [id])
 
+  @@id([courseId, tagId])
   @@map("course_tags")
 }
 
@@ -388,9 +385,10 @@ model Note {
 
 // 交易平台
 model DictPlatform {
-  id   Int     @id @default(autoincrement())
-  name String
-  url  String?
+  id          Int           @id @default(autoincrement())
+  name        String
+  url         String?
+  Transaction Transaction[]
 
   @@map("dict_platforms")
 }
@@ -456,9 +454,17 @@ model AuditStage {
 }
 
 model AuditRecord {
-  id         Int    @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   entityId   Int // 审核实体的ID
   entityType String // 审核实体的类型
+  stageId    Int // 当前审核阶段
+  status     String? // 审核状态
+  reviewerId Int // 审核人ID
+  createdAt  DateTime @default(now()) // 审核时间
+  notes      String? // 审核备注
+
+  Stage    AuditStage @relation(fields: [stageId], references: [id])
+  Reviewer User       @relation(fields: [reviewerId], references: [id])
 
   @@map("audit_records")
 }
