@@ -9,39 +9,15 @@ export class PermissionService {
   constructor(@Inject(PRISMA_DATABASE) private prismaClient: PrismaClient) {}
 
   async create(createPermissionDto: CreatePermissionDto) {
-    const createPermissionPolicy = (policies) => {
-      return {
-        create: policies?.map((policy) => {
-          let whereCondition;
-          if (policy.id) {
-            whereCondition = { id: policy.id };
-          } else {
-            const encode = Buffer.from(JSON.stringify(policy)).toString(
-              'base64',
-            );
-            whereCondition = { encode };
-            policy.encode = encode;
-          }
-          return {
-            policy: {
-              connectOrCreate: {
-                where: whereCondition,
-                create: {
-                  ...policy,
-                },
-              },
-            },
-          };
-        }),
-      };
-    };
     return await this.prismaClient.$transaction(
       async (prisma: PrismaClient) => {
         const { policies, ...restData } = createPermissionDto;
         return prisma.permission.create({
           data: {
             ...restData,
-            PermissionPolicy: createPermissionPolicy(policies),
+            PermissionPolicy: {
+              create: this._createPolicies(policies),
+            },
           },
         });
       },
