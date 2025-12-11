@@ -8,6 +8,7 @@ import {
   Query,
   Patch,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { CreatePermissionDto } from './dto/create-premission.dto';
 import { PermissionService } from './permission.service';
@@ -56,6 +57,15 @@ export class PermissionController {
     @Body() updatePermissionDto: updatePermissionDto,
   ) {
     return this.permissionService.update(+id, updatePermissionDto);
+  }
+
+  @Put(':id/policy')
+  @Serialize(PublicUpdatePermissionDto)
+  updatePolicyWithPermission(
+    @Param('id') id: string,
+    @Body() dto: updatePermissionDto,
+  ) {
+    return this.permissionService.updatPermissionWithPolicy(+id, dto.policyIds);
   }
 
   @Delete(':id')

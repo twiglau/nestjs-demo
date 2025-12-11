@@ -76,57 +76,73 @@ export class PermissionService {
 
   async update(id: number, updatePermissionDto: updatePermissionDto) {
     const { policies, ...restData } = updatePermissionDto;
-    const createPermissionPolicy = () => {
-      return {
-        // 删除的是 PermissionPolicy 关联表中历史关系，先全部删除
-        deleteMany: {},
-        create: policies?.map((policy) => {
-          let whereCondition;
-          if (policy.id) {
-            whereCondition = { id };
-          } else {
-            const encode = Buffer.from(JSON.stringify(policy)).toString(
-              'base64',
-            );
-            whereCondition = { encode };
-            policy.encode = encode;
-          }
-          return {
-            policy: {
-              connectOrCreate: {
-                where: whereCondition,
-                create: {
-                  ...policy,
-                },
-              },
-            },
-          };
-        }),
-      };
-    };
-    return await this.prismaClient.$transaction(
-      (prismaClient: PrismaClient) => {
-        return prismaClient.permission.update({
-          where: { id },
-          data: {
-            ...restData,
-            PermissionPolicy: createPermissionPolicy(),
-          },
-          include: {
-            PermissionPolicy: {
-              include: {
-                policy: true,
-              },
-            },
-          },
-        });
-      },
-    );
   }
 
   remove(id: number) {
     return this.prismaClient.permission.delete({
       where: { id },
+    });
+  }
+
+  updatPermissionWithPolicy(id: number, policyIds: number[] = []) {
+    return this.prismaClient.$transaction(async (prisma: PrismaClient) => {
+      // 先删除PermissionPolicy关联表中历史关系
+      await prisma.permissionPolicy.deleteMany({
+        where: {
+          permissionId: id,
+        },
+      });
+      // 再创建新的关联关系
+      const validIds: number[] = [];
+      for (const policyId of policyIds) {
+        const policy = await prisma.policy.findUnique({
+          where: { id: policyId },
+        });
+        if (policy) {
+          validIds.push(policyId);
+        }
+      }
+      await prisma.permissionPolicy.createMany({
+        data: validIds.map((policyId) => ({
+          permissionId: id,
+          policyId,
+        })),
+      });
+
+      // 返回更新后的权限
+      return prisma.permission.findUnique({
+        where: { id },
+        include: {
+          PermissionPolicy: {
+            include: {
+              policy: true,
+            },
+          },
+        },
+      });
+    });
+  }
+
+  private _createPolicies(policies: any[]) {
+    return policies.map((policy) => {
+      let whereCondition;
+      if (policy.id) {
+        whereCondition = { id: policy.id };
+      } else {
+        const encode = Buffer.from(JSON.stringify(policy)).toString('base64');
+        whereCondition = { encode };
+        policy.encode = encode;
+      }
+      return {
+        policy: {
+          connectOrCreate: {
+            where: whereCondition,
+            create: {
+              ...policy,
+            },
+          },
+        },
+      };
     });
   }
 }

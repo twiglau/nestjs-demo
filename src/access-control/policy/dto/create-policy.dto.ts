@@ -1,4 +1,5 @@
 import { IsIn, IsInt, IsOptional, IsString } from 'class-validator';
+import { PermissionPolicy, RolePolicy } from 'prisma/client/postgresql';
 
 type FieldType = string | string[] | Record<string, any>;
 
@@ -28,4 +29,10 @@ export class CreatePolicyDto {
 
   @IsOptional()
   args?: FieldType;
+
+  @IsOptional()
+  rolePolicies?: RolePolicy[];
+
+  @IsOptional()
+  permissionPolicies?: PermissionPolicy[];
 }
