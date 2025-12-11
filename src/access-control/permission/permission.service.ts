@@ -75,7 +75,52 @@ export class PermissionService {
   }
 
   async update(id: number, updatePermissionDto: updatePermissionDto) {
-    const { policies, ...restData } = updatePermissionDto;
+    const { policies = [], policyIds = [], ...restData } = updatePermissionDto;
+    return await this.prismaClient.$transaction(
+      async (prisma: PrismaClient) => {
+        // 先删除PermissionPolicy关联表中历史关系
+        await prisma.permissionPolicy.deleteMany({
+          where: {
+            permissionId: id,
+          },
+        });
+        // 再创建新的关联关系
+        const validIds: number[] = [];
+        for (const policyId of policyIds) {
+          const policy = await prisma.policy.findUnique({
+            where: { id: policyId },
+          });
+          if (policy) {
+            validIds.push(policyId);
+          }
+        }
+        await prisma.permissionPolicy.createMany({
+          data: validIds.map((policyId) => ({
+            permissionId: id,
+            policyId,
+          })),
+        });
+
+        // 返回更新后的权限
+        return prisma.permission.update({
+          where: { id },
+          data: {
+            ...restData,
+            PermissionPolicy: {
+              deleteMany: {}, // 删除 permissionPolicy 关联表中历史关系
+              create: this._createPolicies(policies),
+            },
+          },
+          include: {
+            PermissionPolicy: {
+              include: {
+                policy: true,
+              },
+            },
+          },
+        });
+      },
+    );
   }
 
   remove(id: number) {
