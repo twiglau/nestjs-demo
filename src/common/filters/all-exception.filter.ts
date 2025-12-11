@@ -63,9 +63,9 @@ export class AllExceptionFilter implements ExceptionFilter {
     const response: Response = ctx.getResponse<Response>();
 
     // TODO 处理 nestjs-i18n 验证异常  下面自定义处理
-    if (exception instanceof I18nValidationException) {
-      return this.i18nValidationExceptionFilter.catch(exception, host);
-    }
+    // if (exception instanceof I18nValidationException) {
+    //   return this.i18nValidationExceptionFilter.catch(exception, host);
+    // }
 
     let message: string = exception.message || 'Internal Server Error';
     let status: HttpStatus =

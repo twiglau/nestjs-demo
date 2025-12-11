@@ -25,11 +25,15 @@ export class CreateDictCourseTagDto {
   @ValidateIf((o) => !o.id)
   order: number = 1000; // 排序， 默认为 1000
 
+  @IsInt()
+  @IsOptional()
+  @ValidateIf((o) => !o.id)
+  status: number = 0; // 是否禁用， 0 -未禁用， 1-已禁用。默认为 未禁用
+
   @Type(() => CreateDictCourseTypeDto)
   @IsOptional()
   @ValidateIf((o) => !o.typeId || !o.id)
   @ValidateNested({ each: true })
-  status: number = 0;
   type?: CreateDictCourseTypeDto;
 }
 

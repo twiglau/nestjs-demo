@@ -9,7 +9,7 @@ import { FeatureAdapter } from '@/modules/features.interface';
 export class CourseTypesService implements FeatureAdapter {
   constructor(@Inject(PRISMA_DATABASE) private prismaClient: PrismaClient) {}
   create(createCourseTypeDto: CreateDictCourseTypeDto) {
-    return this.prismaClient.dictCouponType.create({
+    return this.prismaClient.dictCourseType.create({
       data: createCourseTypeDto,
     });
   }
@@ -21,7 +21,7 @@ export class CourseTypesService implements FeatureAdapter {
     let data;
 
     if (limit === -1) {
-      data = this.prismaClient.dictCourseType.findMany({});
+      data = await this.prismaClient.dictCourseType.findMany({});
     } else {
       data = await this.prismaClient.dictCourseType.findMany({
         skip,
@@ -54,7 +54,7 @@ export class CourseTypesService implements FeatureAdapter {
   }
 
   remove(id: number) {
-    return this.prismaClient.dictCouponType.delete({
+    return this.prismaClient.dictCourseType.delete({
       where: { id },
     });
   }
