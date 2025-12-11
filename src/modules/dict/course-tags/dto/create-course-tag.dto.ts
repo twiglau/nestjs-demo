@@ -25,7 +25,7 @@ export class CreateDictCourseTagDto {
   @ValidateIf((o) => !o.id)
   order: number = 1000; // 排序， 默认为 1000
 
-  @Type(() => CreateDictCourseTagsDto)
+  @Type(() => CreateDictCourseTypeDto)
   @IsOptional()
   @ValidateIf((o) => !o.typeId || !o.id)
   @ValidateNested({ each: true })

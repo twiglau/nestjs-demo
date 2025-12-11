@@ -58,19 +58,62 @@ export class AttachmentService {
     });
   }
 
-  find(page: number, limit: number) {
-    return `This action returns all attachment`;
+  async find(page: number, limit: number) {
+    const skip = (page - 1) * limit;
+    const count = await this.prismaClient.attachment.count({});
+
+    let data;
+    if (limit === -1) {
+      data = await this.prismaClient.attachment.findMany({
+        include: { AttachmentAttribute: true },
+      });
+    } else {
+      data = await this.prismaClient.attachment.findMany({
+        skip,
+        take: limit,
+        include: { AttachmentAttribute: true },
+      });
+    }
+    const res: IResList = {
+      records: data,
+      pagination: {
+        total: count,
+        current: page,
+        size: limit,
+        pages: Math.ceil(count / limit),
+      },
+    };
+    return res;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} attachment`;
+    return this.prismaClient.attachment.findUnique({
+      where: { id },
+      include: {
+        AttachmentAttribute: true,
+      },
+    });
   }
 
   update(id: number, updateAttachmentDto: UpdateAttachmentDto) {
-    return `This action updates a #${id} attachment`;
+    return this.prismaClient.attachment.update({
+      where: { id },
+      data: updateAttachmentDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} attachment`;
+    return this.prismaClient.$transaction(async (prisma: PrismaClient) => {
+      // 删除关联关系
+      await prisma.attachmentAttribute.deleteMany({
+        where: {
+          attachmentId: id,
+        },
+      });
+      // 删除附件
+      return prisma.attachment.delete({
+        where: { id },
+      });
+    });
   }
 }

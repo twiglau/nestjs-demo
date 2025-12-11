@@ -14,7 +14,7 @@ declare global {
     }
   }
 
-  declare interface IResList<T = any> {
+  interface IResList<T = any> {
     records: T[];
     pagination: {
       total: number;

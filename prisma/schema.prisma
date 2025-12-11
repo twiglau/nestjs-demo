@@ -287,7 +287,7 @@ model DictCourseTag {
   CourseTag  CourseTag[]
   ContentTag ContentTag[]
 
-  @@unique([name, typeId])
+  @@unique([name, typeId]) // 复合唯一约束
   @@map("dict_course_tags")
 }
 
@@ -309,7 +309,7 @@ model CourseTag {
   Course Course        @relation(fields: [courseId], references: [id])
   Tag    DictCourseTag @relation(fields: [tagId], references: [id])
 
-  @@id([courseId, tagId])
+  @@id([courseId, tagId]) // 联合主键
   @@map("course_tags")
 }
 

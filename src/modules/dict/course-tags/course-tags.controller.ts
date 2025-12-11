@@ -12,7 +12,6 @@ import {
 import { CourseTagsService } from './course-tags.service';
 import { CreateDictCourseTagDto } from './dto/create-course-tag.dto';
 import { UpdateCourseTagDto } from './dto/update-course-tag.dto';
-import { number } from 'joi';
 
 @Controller('dict/course-tags')
 export class CourseTagsController {
@@ -28,6 +27,7 @@ export class CourseTagsController {
     @Query('page', new ParseIntPipe({ optional: true })) page: number = 1,
     @Query('size', new ParseIntPipe({ optional: true })) size: number = 10,
   ) {
+    console.log(page, size);
     return this.courseTagsService.find(page, size);
   }
 
