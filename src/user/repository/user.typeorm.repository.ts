@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entity';
 import { TYPEORM_DATABASE } from '@/database/database-constants';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { UserAdapter } from '../user.interface';
 
 export class UserTypeormRepository implements UserAdapter {
@@ -12,9 +12,17 @@ export class UserTypeormRepository implements UserAdapter {
     private readonly user: Repository<User>,
   ) {}
 
-  findAll(page: number = 1, limit: number = 10): Promise<any[]> {
+  findAll(
+    page: number = 1,
+    limit: number = 10,
+    username?: string,
+  ): Promise<any[]> {
     const skip = (page - 1) * limit;
-    return this.user.find({ skip, take: limit });
+    return this.user.find({
+      skip,
+      take: limit,
+      where: username ? { username: Like(`%${username}%`) } : {},
+    });
   }
   findOne(username: string): Promise<any> {
     return this.user.findOneBy({ username });

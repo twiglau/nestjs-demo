@@ -9,16 +9,16 @@ import {
   UseGuards,
   Patch,
   Delete,
+  UsePipes,
 } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Serialize } from '@/common/decorators/serialize.decorator';
 import { PublicUserDto } from '@/access-control/auth/dto/public-user.dto';
-// import { AuthGuard } from '@nestjs/passport';
-// import { AdminGuard } from '@/common/guard/admin.guard';
 import { RolePermissionGuard } from '@/common/guard/role-permission.guard';
 import { Public } from '@/common/decorators/public.decorator';
 import {
+  Create,
   Permission,
   Read,
   Update,
@@ -27,21 +27,34 @@ import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PublicUpdateUserDto } from './dto/public-update-user.dto';
 import { PolicyGuard } from '@/common/guard/policy.guard';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { FieldUniqueValidationPipe } from '@/common/pipes/unique-validation.pipe';
 
+@ApiTags('User')
 @Controller('user')
 @Permission('user')
 @UseGuards(JwtGuard, RolePermissionGuard, PolicyGuard)
+@UsePipes(FieldUniqueValidationPipe)
 export class UserController {
   constructor(private userRepository: UserRepository) {}
 
+  @ApiOperation({ summary: '创建用户' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({
+    status: 200,
+    description: 'The found record',
+    type: CreateUserDto,
+  })
   @Post()
   @Serialize(PublicUserDto)
+  @Create()
   create(@Body() createUserDto: CreateUserDto) {
     // 该参数没有校验，是因为变为 可选的了
     return this.userRepository.create(createUserDto);
   }
 
   @Get()
+  @Serialize(PublicUserDto)
   @Read()
   findAll(
     @Query(
@@ -58,8 +71,10 @@ export class UserController {
       }),
     )
     limit,
+    @Query('username')
+    username?: string,
   ) {
-    return this.userRepository.findAll(page, limit);
+    return this.userRepository.findAll(page, limit, username);
   }
 
   @Get(':username')
@@ -75,6 +90,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @Delete()
   delete(@Param('id') id: string) {
     return this.userRepository.delete(id);
   }

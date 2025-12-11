@@ -6,9 +6,13 @@ import { UserAdapter } from '../user.interface';
 export class UserMongooseRepository implements UserAdapter {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  findAll(page: number = 1, limit: number = 10): Promise<any[]> {
+  findAll(
+    page: number = 1,
+    limit: number = 10,
+    username?: string,
+  ): Promise<any[]> {
     return this.userModel
-      .find()
+      .find(username ? { username: { $regex: username } } : {})
       .limit(limit)
       .skip((page - 1) * limit)
       .exec();

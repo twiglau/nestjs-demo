@@ -12,9 +12,26 @@ export class UserPrismaRepository implements UserAdapter {
     private configService: ConfigService,
   ) {}
 
-  findAll(page: number = 1, limit: number = 10): Promise<any[]> {
+  findAll(
+    page: number = 1,
+    limit: number = 10,
+    username?: string,
+  ): Promise<any[]> {
     const skip = (page - 1) * limit;
-    return this.prismaClient.user.findMany({ skip, take: limit });
+    return this.prismaClient.user.findMany({
+      skip,
+      take: limit,
+      orderBy: {
+        createdAt: 'asc',
+      },
+      where: username
+        ? {
+            username: {
+              contains: `${username}`,
+            },
+          }
+        : {},
+    });
   }
 
   findOne(username: string): Promise<any> {
