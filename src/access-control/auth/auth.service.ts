@@ -18,7 +18,6 @@ export class AuthService {
     if (!user) {
       throw new ForbiddenException('用户不存在');
     }
-    console.log('user:', user);
 
     const isPasswordValid = user && argon2.verify(user.password, password);
     if (!isPasswordValid) {

@@ -137,6 +137,9 @@ importers:
       winston-daily-rotate-file:
         specifier: ^5.0.0
         version: 5.0.0(winston@3.18.3)
+      winston-mongodb:
+        specifier: ^7.0.1
+        version: 7.0.1(winston@3.18.3)
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -5196,6 +5199,12 @@ packages:
     engines: {node: '>=8'}
     peerDependencies:
       winston: ^3
+
+  winston-mongodb@7.0.1:
+    resolution: {integrity: sha512-nrDzXhFUcseGN5Ul0QqqaB44gtsKT7b6gqjxhLb44P8svDfnBoQIwmMjZLkG66KNZVn3cCzVetm5v2StljOhRw==}
+    engines: {node: '>=14.20.1'}
+    peerDependencies:
+      winston: ^3.0.0
 
   winston-transport@4.9.0:
     resolution: {integrity: sha512-8drMJ4rkgaPo1Me4zD/3WLfI/zPdA9o2IipKODunnGDcuqbHwjsbB79ylv04LCGGzU0xQ6vTznOMpQGaLhhm6A==}
@@ -11073,6 +11082,20 @@ snapshots:
       triple-beam: 1.4.1
       winston: 3.18.3
       winston-transport: 4.9.0
+
+  winston-mongodb@7.0.1(winston@3.18.3):
+    dependencies:
+      mongodb: 6.20.0
+      winston: 3.18.3
+      winston-transport: 4.9.0
+    transitivePeerDependencies:
+      - '@aws-sdk/credential-providers'
+      - '@mongodb-js/zstd'
+      - gcp-metadata
+      - kerberos
+      - mongodb-client-encryption
+      - snappy
+      - socks
 
   winston-transport@4.9.0:
     dependencies:

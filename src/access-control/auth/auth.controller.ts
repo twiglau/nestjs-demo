@@ -2,6 +2,7 @@ import {
   Body,
   // ClassSerializerInterceptor,
   Controller,
+  Logger,
   Post,
   // UseInterceptors,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { Serialize } from '@/common/decorators/serialize.decorator';
 
 @Controller('auth')
 export class AuthController {
+  logger = new Logger();
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
@@ -33,6 +35,7 @@ export class AuthController {
   @Post('/signin')
   signin(@Body() dto: SignupDto) {
     const { username, password } = dto;
+    this.logger.error('登录测试 looger');
     return this.authService.signin(username, password);
   }
 }
