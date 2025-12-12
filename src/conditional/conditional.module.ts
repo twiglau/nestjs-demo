@@ -25,6 +25,11 @@ export class ConditionalModule {
       imports.push(I18nCommonModule);
     }
     // 定时任务模块
+    if (toBoolean(parsedConfig[ConfigEnum.QUEUE_ON])) {
+      // imports.push()
+    }
+    if (toBoolean(parsedConfig[ConfigEnum.CRON_ON])) {
+    }
 
     return {
       module: ConditionalModule,
