@@ -8,7 +8,7 @@ export interface SshOptionsFactory {
 export interface SshModuleOptions extends ConnectConfig {}
 
 export interface SshModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
-  useExisting: Type<SshOptionsFactory>;
+  useExisting?: Type<SshOptionsFactory>;
   useClass?: Type<SshOptionsFactory>;
   useFactory?: (...args: any[]) => Promise<SshModuleOptions> | SshModuleOptions;
   inject?: any[];

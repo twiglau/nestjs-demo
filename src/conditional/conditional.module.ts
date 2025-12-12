@@ -5,6 +5,9 @@ import { RedisCommonModule } from './cache/redis-common.module';
 import { toBoolean } from '@/utils/format';
 import { ConfigEnum } from '@/common/enum/config.enum';
 import { I18nCommonModule } from './i18n/i18n.module';
+import { TasksModule } from '@/common/cron/tasks.module';
+import { SshModule } from '@/utils/ssh/ssh.module';
+import { ConfigurationService } from '@/common/configuration/configuration.service';
 
 const imports: any[] = [];
 const providers = [];
@@ -29,6 +32,19 @@ export class ConditionalModule {
       // imports.push()
     }
     if (toBoolean(parsedConfig[ConfigEnum.CRON_ON])) {
+      console.log('定时任务模块');
+      imports.push(TasksModule);
+      imports.push(SshModule.forRootAsync({
+        inject: [ConfigurationService],
+        useFactory: (config: ConfigurationService) => {
+          return {
+            host: config.getKey(ConfigEnum.SSH_HOST),
+            port: config.getKey(ConfigEnum.SSH_PORT),
+            username: config.getKey(ConfigEnum.SSH_USERNAME),
+            password: config.getKey(ConfigEnum.SSH_PASSWORD),
+          };
+        }
+      }))
     }
 
     return {
