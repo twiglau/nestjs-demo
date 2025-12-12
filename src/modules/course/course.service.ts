@@ -34,6 +34,8 @@ export class CourseService implements FeatureAdapter {
           },
         });
       }
+
+      return course;
     });
   }
 

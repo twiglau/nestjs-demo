@@ -7,8 +7,8 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { CreateCourseTagDto } from './create-course-tag.dto';
 import { Type } from 'class-transformer';
+import { CreateDictCourseTagsDto } from '@/modules/dict/course-tags/dto/create-course-tag.dto';
 
 export class CreateCourseDto {
   @IsNotEmpty()
@@ -20,7 +20,7 @@ export class CreateCourseDto {
   subTitle?: string; // 子标题
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   desc?: string; // 描述信息
 
   @IsOptional()
@@ -48,7 +48,7 @@ export class CreateCourseDto {
   counts: number = 0; // 购买计数初始值
 
   @IsOptional()
-  @IsString()
+  @IsNumber()
   order: number = 1000; // 排序
 
   @IsOptional()
@@ -61,7 +61,7 @@ export class CreateCourseDto {
 
   @IsOptional()
   @IsArray()
-  @Type(() => CreateCourseTagDto)
+  @Type(() => CreateDictCourseTagsDto)
   @ValidateNested({ each: true })
-  tags?: CreateCourseTagDto[];
+  tags?: CreateDictCourseTagsDto[];
 }

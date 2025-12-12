@@ -24,5 +24,5 @@ export class CreateCourseTagDto {
   @Type(() => CreateDictCourseTagsDto)
   @ValidateNested({ each: true })
   @IsArray()
-  tags: CreateDictCourseTagsDto[];
+  tags?: CreateDictCourseTagsDto[];
 }

@@ -13,7 +13,7 @@ import {
 } from './prisma-options.interface';
 import { PrismaClient as MysqlClient } from 'prisma-mysql';
 import { PrismaClient as PostgresqlClient } from 'prisma-postgresql';
-import { getDBType } from './prisma-utils';
+import { extendTransaction, getDBType } from './prisma-utils';
 import {
   PRISMA_CONNECTION_NAME,
   PRISMA_CONNECTIONS,
@@ -85,7 +85,9 @@ export class PrismaCoreModule implements OnApplicationShutdown {
         if (this.connections[url]) {
           return this.connections[url];
         }
-        const client = await prismaConnectionFactory(newOptions, _prismaClient);
+        const client = extendTransaction(
+          await prismaConnectionFactory(newOptions, _prismaClient),
+        );
         this.connections[url] = client;
 
         return lastValueFrom(
@@ -151,9 +153,8 @@ export class PrismaCoreModule implements OnApplicationShutdown {
             if (this.connections[url]) {
               return this.connections[url];
             }
-            const client = await prismaConnectionFactory(
-              newOptions,
-              _prismaClient,
+            const client = extendTransaction(
+              await prismaConnectionFactory(newOptions, _prismaClient),
             );
             this.connections[url] = client;
             return client;

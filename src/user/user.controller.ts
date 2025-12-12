@@ -22,6 +22,7 @@ import {
   Permission,
   Read,
   Update,
+  Delete as PermissionDelete,
 } from '@/common/decorators/role-permission.decorator';
 import { JwtGuard } from '@/common/guard/jwt.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -90,7 +91,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  @Delete()
+  @PermissionDelete()
   delete(@Param('id') id: string) {
     return this.userRepository.delete(id);
   }
