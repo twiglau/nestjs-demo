@@ -1,15 +1,18 @@
 import { Module } from '@nestjs/common';
-import { LogsModule } from './common/logger/logs.module';
 import { AppController } from './app.controller';
 
+// 公共模块
+import { LogsModule } from './common/logger/logs.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { AccessControlModule } from './access-control/access-control.module';
 import { ConfigurationModule } from './common/configuration/configuration.module';
+// 第三方可选模块
 import { ConditionalModule } from './conditional/conditional.module';
-
 // 特性模块 -> 业务模块
 import { FeaturesModule } from './modules/features.module';
+// 工具模块
+import { ToolsModule } from './utils/tools.module';
 @Module({
   imports: [
     ConfigurationModule,
@@ -19,6 +22,7 @@ import { FeaturesModule } from './modules/features.module';
     ConditionalModule.register(),
     AccessControlModule,
     FeaturesModule,
+    ToolsModule,
   ],
   // 获取 DI 系统中具体 class 类的实例，以及他们之间的依赖关系
   controllers: [AppController],
