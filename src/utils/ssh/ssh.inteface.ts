@@ -1,11 +1,11 @@
 import { ModuleMetadata, Type } from '@nestjs/common';
 import { ConnectConfig } from 'ssh2';
 
+export interface SshModuleOptions extends ConnectConfig {}
+
 export interface SshOptionsFactory {
   createSshOptions(): Promise<SshModuleOptions> | SshModuleOptions;
 }
-
-export interface SshModuleOptions extends ConnectConfig {}
 
 export interface SshModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
   useExisting?: Type<SshOptionsFactory>;

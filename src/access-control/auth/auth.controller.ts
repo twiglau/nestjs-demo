@@ -2,6 +2,7 @@ import {
   Body,
   // ClassSerializerInterceptor,
   Controller,
+  Get,
   Logger,
   Post,
   // UseInterceptors,
@@ -11,11 +12,15 @@ import { CreateUserPipe } from './pipes/create-user.pipe';
 import { SignupDto } from './dto/signup-user.dto';
 import { PublicUserDto } from './dto/public-user.dto';
 import { Serialize } from '@/common/decorators/serialize.decorator';
+import { SshService } from '@/utils/ssh/ssh.service';
 
 @Controller('auth')
 export class AuthController {
   logger = new Logger();
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private sshService: SshService,
+  ) {}
 
   @Post('/signup')
   // 实践 2
@@ -37,5 +42,21 @@ export class AuthController {
     const { username, password } = dto;
     this.logger.error('登录测试 looger');
     return this.authService.signin(username, password);
+  }
+
+  @Get('/ssh')
+  async ssh() {
+    await this.sshService.connect();
+    // This ensures that the SSH session can locate the docker binary even in a non-interactive environment.
+    const res = await this.sshService.exec(
+      'export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin; docker ps',
+    );
+
+    console.log(
+      '🚀 ~ auth.controller.ts:53 ~ AuthController ~ ssh ~ res:',
+      res,
+    );
+
+    return res;
   }
 }

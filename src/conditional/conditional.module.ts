@@ -34,17 +34,19 @@ export class ConditionalModule {
     if (toBoolean(parsedConfig[ConfigEnum.CRON_ON])) {
       console.log('定时任务模块');
       imports.push(TasksModule);
-      imports.push(SshModule.forRootAsync({
-        inject: [ConfigurationService],
-        useFactory: (config: ConfigurationService) => {
-          return {
-            host: config.getKey(ConfigEnum.SSH_HOST),
-            port: config.getKey(ConfigEnum.SSH_PORT),
-            username: config.getKey(ConfigEnum.SSH_USERNAME),
-            password: config.getKey(ConfigEnum.SSH_PASSWORD),
-          };
-        }
-      }))
+      imports.push(
+        SshModule.forRootAsync({
+          inject: [ConfigurationService],
+          useFactory: (config: ConfigurationService) => {
+            return {
+              host: config.getKey(ConfigEnum.SSH_HOST),
+              port: config.getKey(ConfigEnum.SSH_PORT),
+              username: config.getKey(ConfigEnum.SSH_USERNAME),
+              password: config.getKey(ConfigEnum.SSH_PASSWORD),
+            };
+          },
+        }),
+      );
     }
 
     return {
