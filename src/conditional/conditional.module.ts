@@ -8,6 +8,7 @@ import { I18nCommonModule } from './i18n/i18n.module';
 import { TasksModule } from '@/common/cron/tasks.module';
 import { SshModule } from '@/utils/ssh/ssh.module';
 import { ConfigurationService } from '@/common/configuration/configuration.service';
+import { QueueModule } from './queue/queue.module';
 
 const imports: any[] = [];
 const providers = [];
@@ -29,10 +30,9 @@ export class ConditionalModule {
     }
     // 定时任务模块
     if (toBoolean(parsedConfig[ConfigEnum.QUEUE_ON])) {
-      // imports.push()
+      imports.push(QueueModule.register());
     }
     if (toBoolean(parsedConfig[ConfigEnum.CRON_ON])) {
-      console.log('定时任务模块');
       imports.push(TasksModule);
       imports.push(
         SshModule.forRootAsync({
