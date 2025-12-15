@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 
+// 处理简单的任务:
+
 // 1. 周期性的任务（每天，每小时，每周）
 // 2. 简单的任务， 不需要持久化 -> 系统状态 -> 接口状态
 // 3. 轻量级的任务， 大量高并发的任务（反例） -> task queue -> nestjs bull + redis (RabbitMQ Kafka...)
@@ -33,7 +35,7 @@ export class TasksService {
       let next;
       try {
         next = value.nextDate().toJSDate();
-      } catch (e) {   
+      } catch (e) {
         next = 'error: next fire date is in the past!';
       }
       this.logger.log(`Job ${key} -> next: ${next}`);

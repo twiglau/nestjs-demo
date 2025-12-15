@@ -5,7 +5,11 @@ import { MailerCommonModule } from '../mail/mail.module';
 import { toBoolean } from '@/utils/format';
 import { BullModule } from '@nestjs/bull';
 import { ConfigurationService } from '@/common/configuration/configuration.service';
+import { QueueConsumers } from './services';
 
+// 处理复杂的任务:
+// 1. 需要持久化 -> 系统状态 -> 接口状态
+// 2. 重量级的任务， 大量高并发的任务 -> task queue -> nestjs bull + redis (RabbitMQ Kafka...)
 @Module({})
 export class QueueModule {
   static register(): DynamicModule {
@@ -18,7 +22,7 @@ export class QueueModule {
     }
     return {
       module: QueueModule,
-      providers: [],
+      providers: [...QueueConsumers],
       exports: [BullModule],
       imports: [
         ...conditionalModuleImports,
@@ -43,6 +47,17 @@ export class QueueModule {
             };
           },
         }),
+        // 注册队列
+        BullModule.registerQueue(
+          // { name: 'emails' },
+          // { name: 'data-processing' },
+          // { name: 'real-time-messages' },
+          // { name: 'image-processing' },
+          // { name: 'order-processing' },
+          // 设置定时任务 (邮件， 短信)
+          { name: 'test-tasks' },
+          { name: 'scheduled-tasks' },
+        ),
       ],
     };
   }
