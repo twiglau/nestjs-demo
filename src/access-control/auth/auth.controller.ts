@@ -13,6 +13,8 @@ import { SignupDto } from './dto/signup-user.dto';
 import { PublicUserDto } from './dto/public-user.dto';
 import { Serialize } from '@/common/decorators/serialize.decorator';
 import { SshService } from '@/utils/ssh/ssh.service';
+import { InjectQueue } from '@nestjs/bull';
+import type { Queue } from 'bull';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +22,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private sshService: SshService,
+    @InjectQueue('test-tasks') private testTasksQueue: Queue,
   ) {}
 
   @Post('/signup')
@@ -58,5 +61,11 @@ export class AuthController {
     );
 
     return res;
+  }
+
+  @Get('/queue')
+  triggerTestQueue() {
+    this.testTasksQueue.add('test', { foo: 'bar' });
+    return 'Test job added to queue';
   }
 }

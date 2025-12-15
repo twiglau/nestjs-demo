@@ -22,6 +22,7 @@ export class QueueModule {
     }
     return {
       module: QueueModule,
+      global: true,
       providers: [...QueueConsumers],
       exports: [BullModule],
       imports: [
